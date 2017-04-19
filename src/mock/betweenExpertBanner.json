@@ -1,0 +1,28 @@
+{
+    "statusCode": 200,
+    "desc": "操作成功",
+    "rows": [
+        {
+            "id": 129,
+            "title": "test",
+            "languageCode": 0,
+            "adsPostionId": 6,
+            "adsImg": "/group2/M00/00/19/rBIBPljU3BiAeuTYAARz0A-rjUg329.png",
+            "sortVal": 5,
+            "status": 0,
+            "deleteFlag": 0,
+            "dataMode": 0,
+            "url": "",
+            "summary": null,
+            "createTime": "2017-03-24 16:42:35",
+            "updateTime": "2017-03-24 16:42:35",
+            "postionName": null,
+            "helpTitle": null,
+            "helpSize": null
+        }
+    ],
+    "totalSize": 0,
+    "totalPage": 0,
+    "currentPage": 0,
+    "pageSize": 0
+}

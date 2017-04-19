@@ -1,0 +1,23 @@
+{
+  "presets": [
+    // 如果设置成modules为false，可能导致部分js插件引入失败，比如swiper.js
+    ["es2015", { "modules" : "commonjs" }],
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-runtime", 
+    ["component", [
+                    {
+                      "libraryName": "element-ui",
+                      "styleLibraryName": "theme-default"
+                    }
+                  ]
+    ]
+  ],
+  "comments": false,
+  "env": {
+    "test": {
+      "plugins": [ "istanbul" ]
+    }
+  }
+}

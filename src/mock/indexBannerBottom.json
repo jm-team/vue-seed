@@ -1,0 +1,46 @@
+{
+    "statusCode": 200,
+    "desc": "操作成功",
+    "rows": [
+        {
+            "id": 1,
+            "title": "2",
+            "languageCode": 0,
+            "adsPostionId": 5,
+            "adsImg": "/group1/M00/00/1A/rBIBPVjYucOAcFgkAAePMPlwJnA983.jpg",
+            "sortVal": 0,
+            "status": 0,
+            "deleteFlag": 0,
+            "dataMode": 0,
+            "url": "",
+            "summary": null,
+            "createTime": null,
+            "updateTime": null,
+            "postionName": null,
+            "helpTitle": null,
+            "helpSize": null
+        },
+        {
+            "id": 2,
+            "title": "3",
+            "languageCode": 0,
+            "adsPostionId": 5,
+            "adsImg": "/group2/M00/00/1A/rBIBPljYubKAO4sqAAWqAsqvmlg863.jpg",
+            "sortVal": 0,
+            "status": 0,
+            "deleteFlag": 0,
+            "dataMode": 0,
+            "url": "",
+            "summary": null,
+            "createTime": null,
+            "updateTime": null,
+            "postionName": null,
+            "helpTitle": null,
+            "helpSize": null
+        }
+    ],
+    "totalSize": 0,
+    "totalPage": 0,
+    "currentPage": 0,
+    "pageSize": 0
+}

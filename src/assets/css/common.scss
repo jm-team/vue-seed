@@ -1,0 +1,38 @@
+// 公用scss样式
+$pageWidth:1190px;
+$linkHoverColor:#2788e8;
+$bg-f5f5f5:#f5f5f5;
+$bg-1d86eb: #1d86eb;
+$font-6e6e6e:#6e6e6e;
+$font-3e3e3e: #3e3e3e;
+$border-color: #dedede;
+$color-2788e8: #2788e8;
+
+// 弹窗公共样式
+.yzk-dialog {
+    .el-dialog__header{
+        background:$bg-1d86eb;
+        line-height:35px;
+        padding-top:0;
+    }
+    .el-dialog__title{
+        color:#fff;
+        font-weight:normal;
+    }
+    .el-dialog__close{
+        color:#fff;
+    }
+    .el-dialog__close:hover{
+        color:#efefef;
+    }
+    .el-dialog__close:before{
+        font-size:14px;
+    }    
+    .dialog-btn-item {
+        text-align: center;
+        padding: 40px 0 10px;
+    }
+    .btn-iknow {
+        width: 90px;
+    }
+}
