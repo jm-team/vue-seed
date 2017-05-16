@@ -1,4 +1,4 @@
-# vue-pc-seed
+# vue-seed
 
 > vue2 pc版项目脚手架
 
