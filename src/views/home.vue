@@ -172,37 +172,27 @@
           if(res.data.statusCode == 200 && res.data.rows.length>0){
             this.carousels =res.data.rows;
           }
-        }).catch((err) =>{
-
-        });
+        })
         this.Api.expertStyle().then((res) =>{
           if(res.data.statusCode == 200 && res.data.rows.length>0){
               this.styleInfo = res.data.rows;
           }
-        }).catch((err) =>{
-
-        });
+        })
         this.Api.expertStyleBanner().then((res) =>{
             if(res.data.statusCode == 200 && res.data.rows.length>0){
                 this.styleBanner = res.data.rows;
             }
-        }).catch((err) =>{
-
-        });
+        })
         this.Api.expertList().then((res) =>{
           if(res.data.statusCode == 200 && res.data.rows.length>0){
               this.expertLists = res.data.rows;
           }
-        }).catch((err) =>{
-
-        });
+        })
         this.Api.bottomCarousel().then((res) =>{
             if(res.data.statusCode == 200 && res.data.rows.length>0){
                 this.bottomCarousels = res.data.rows;
             }
-        }).catch((err) =>{
-
-        });
+        })
     },
     methods: {
         lazyLoadPic(url) {

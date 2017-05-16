@@ -30,7 +30,8 @@ module.exports = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
-        // 拷贝文件到构建目录
+
+    // 拷贝mock数据文件到构建目录
     new CopyWebpackPlugin([
             { from: 'src/mock', to: 'mock' }
     ], {

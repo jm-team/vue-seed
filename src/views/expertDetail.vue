@@ -323,24 +323,12 @@ export default {
     this.Api.getExpertAttribute(this.expertId).then((rep) => {
       if (rep.data.statusCode == 200) {
         this.expertAttribute = rep.data.desc
-      } else {
-        // 显示错误信息
-        this.$message({
-          message: rep.data.desc || '获取数据出错',
-          type: 'error'
-        })
       }
     })
     // 获取研报信息
     this.Api.getExpertResearch(this.expertId).then((rep) => {
       if (rep.data.statusCode == 200) {
         this.researchList = rep.data.rows
-      } else {
-        // 显示错误信息
-        this.$message({
-          message: rep.data.desc || '获取数据出错',
-          type: 'error'
-        })
       }
     })
   },
@@ -355,10 +343,6 @@ export default {
     },
     openDialog(formName) {
       if (!this.userIsLogin) {
-        // this.$message({
-        //   message: '请先登录！',
-        //   type: 'warning'
-        // })
         this.$root.$emit('showLoginDialog')
         return
       }
@@ -447,12 +431,6 @@ export default {
       this.Api.getExpertDetail(this.expertId).then((rep) => {
         if (rep.data.statusCode == 200) {
           this.expertInfo = rep.data.rows
-        } else {
-          // 显示错误信息
-          this.$message({
-            message: rep.data.desc || '获取数据出错',
-            type: 'error'
-          })
         }
       })
     },
@@ -466,12 +444,6 @@ export default {
           this.Api.expertFavo(this.expertId, 1).then((rep) => {
             if (rep.data.statusCode == 200) {
               this.$set(this.expertInfo, 'isFavorite', 1)
-            } else {
-              // 显示错误信息
-              this.$message({
-                message: rep.data.desc || '操作失败',
-                type: 'error'
-              })
             }
           })
         } else {
@@ -479,12 +451,6 @@ export default {
           this.Api.expertFavo(this.expertId, 0).then((rep) => {
             if (rep.data.statusCode == 200) {
               this.$set(this.expertInfo, 'isFavorite', 0)
-            } else {
-              // 显示错误信息
-              this.$message({
-                message: rep.data.desc || '操作失败',
-                type: 'error'
-              })
             }
           })
         }

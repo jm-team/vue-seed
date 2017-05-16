@@ -17,9 +17,7 @@ import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'app',
   data () {
-    return {
-        isLogin: true
-    }
+    return {}
   },
   components:{
       TopBar,
@@ -54,5 +52,3 @@ export default {
   }
 }
 </script>
-
-<style></style>

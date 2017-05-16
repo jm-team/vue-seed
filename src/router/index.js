@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// 引入路由视图
+// 引入路由视图，懒加载处理
 const home = r => require.ensure([], () => r(require('views/home')), 'home')
 const expert = r => require.ensure([], () => r(require('views/expert')), 'expert')
 const expertDetail = r => require.ensure([], () => r(require('views/expertDetail')), 'expertDetail')
@@ -60,8 +60,7 @@ var myrouter = new Router({
     {
       path: '/releaseResearch',
       query: {
-        expertId: '',
-        time: ''
+        expertId: ''
       },
       name: 'releaseResearch',
       component: releaseResearch
@@ -77,39 +76,6 @@ var myrouter = new Router({
       component: page404
     }
   ]
-})
-
-// 路由进入前钩子
-myrouter.beforeEach((to, from, next) => {
-  var _app = arguments[1].default.app
-  var userIsLogin = _app.Cookie.getCookie('userIsLogin')
-  if (userIsLogin != 'true' && '/releaseResearch/'.match(`/${to.name}/`)) {
-        // _app.$message({
-        //     message: '请先登录！',
-        //     type: 'warning'
-        // })
-    _app.$emit('showLoginDialog')
-    if (!from.name) {
-      _app.$router.push({ path: '/' })
-    }
-  } else {
-    _app.showFooter = false
-    next()
-  }
-
-    // for SEO
-  window.prerenderReady = false
-})
-
-// 路由进入后钩子
-myrouter.afterEach((to, form) => {
-    // 有待验证是否有效
-  var _app = arguments[1].default.app
-    // 公共底部延迟显示
-  setTimeout(() => { _app.showFooter = true }, 300)
-
-    // for SEO
-  window.prerenderReady = true
 })
 
 export default myrouter

@@ -61,7 +61,6 @@
 </template>
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
-import address from 'config/address.config'
 import Vue from 'vue'
 
 export default {
@@ -333,7 +332,8 @@ export default {
 
 .technican-list-r .expert-detail h4 {
   font-size: 16px;
-  color: #3d3d3d;
+  /*color: #3d3d3d;*/
+  color: var(--fontColor);
   font-weight: normal;
   margin-bottom: 10px;
 }

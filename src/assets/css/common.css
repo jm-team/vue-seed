@@ -521,3 +521,8 @@ a{
 .fn-right {
   float: right;
 }
+
+/* css变量 */
+body{
+  --fontColor:#3d3d3d;
+}

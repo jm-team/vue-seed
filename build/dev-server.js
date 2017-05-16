@@ -21,28 +21,6 @@ var autoOpenBrowser = !!config.dev.autoOpenBrowser
 var proxyTable = config.dev.proxyTable
 
 var app = express()
-
-var appData = require('../src/mock/data.json')
-var events = appData.events
-var notices = appData.notices
-var registerList = appData.registerList
-
-var apiRoutes = express.Router()
-
-apiRoutes.get('/events', function (req, res) {
-  res.json(events)
-})
-
-apiRoutes.get('/notices', function (req, res) {
-  res.json(notices)
-})
-
-apiRoutes.get('/registerList', function (req, res) {
-  res.json(registerList)
-})
-
-app.use('/api2', apiRoutes)
-
 var compiler = webpack(webpackConfig)
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {

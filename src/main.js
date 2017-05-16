@@ -2,7 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Vuex from 'vuex'
 // 兼容ie9
 import 'babel-polyfill'
 import axios from 'axios'
@@ -16,9 +15,6 @@ import 'element-ui/lib/theme-default/index.css'
 import App from './App'
 import router from './router'
 
-// 引入filters
-import filter from 'service/filters'
-
 // 引入公共js
 import Public from 'service/public'
 
@@ -30,10 +26,14 @@ import lazyLoad from 'service/lazyload'
 
 // store
 import store from './store'
-import address from '../config/address.config'
+
+// 引入filters并注册到vue
+import * as filters from './service/filters'
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 Vue.use(lazyLoad)
-Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
@@ -41,16 +41,39 @@ Vue.use(Api)
 Vue.use(Public)
 
 /* eslint-disable no-new */
-new Vue({
+var _app = new Vue({
   el: '#app',
   store,
   template: '<App/>',
   data () {
     return {
-      // 控制公共底部显示
       showFooter: false
     }
   },
   router,
   components: { App }
+})
+
+// 设置路由钩子
+router.beforeEach((to, from, next) => {
+  var userIsLogin = store.state.User.isLogin
+  // 限制访问 releaseReasearch 路由
+  if (userIsLogin !== 'true' && '/releaseResearch/'.match(`/${to.name}/`)) {
+    _app.$emit('showLoginDialog')
+    if (!from.name) {
+      _app.$router.push({ path: '/' })
+    }
+  } else {
+    _app.showFooter = false
+    next()
+  }
+  // for SEO
+  window.prerenderReady = false
+})
+
+router.afterEach((to, form) => {
+  // 公共底部延迟显示
+  setTimeout(() => { _app.showFooter = true }, 300)
+  // for SEO
+  window.prerenderReady = true
 })
