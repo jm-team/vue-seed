@@ -16,10 +16,19 @@ npm run build
 ```
 
 ## 简介
-* 加入单点登录功能
-* 加入公共底部在内容加载后显示优化
-* 加入图片懒加载
-* 引入element UI组件库
-* 抽离了公共api接口和公共js方法
-* 使用json模拟的数据，部分功能不能用，可以查看测试环境：http://www.jtt.com
-* 登录是模拟的，随便输入就能登录，无法保持登录状态
+* 单点登录功能
+* 图片懒加载功能
+* 页面底部在内容加载后显示
+* 公共api抽离
+* 公共js方法抽离
+* 公共filter抽离
+* element-ui组件库引入
+* vuex状态机管理公共数据
+* vue-router路由钩子进行页面访问控制
+* vue-router路由页面组件懒加载
+* css预处理和babel ES6语法处理
+* api代理及图片cdn处理
+* api错误统一处理及友好提示
+* api请求数据mock模拟，部分功能不能用，可以查看测试环境：http://www.jtt.com
+* ie9兼容es6语法处理
+* 开发配置统一提取到config/site.config.js，统一设置
