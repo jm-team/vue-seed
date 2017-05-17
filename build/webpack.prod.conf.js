@@ -31,7 +31,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       compress: {
         warnings: false
       },
-      sourceMap: true
+      sourceMap: false
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -43,6 +43,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       assetsPublicPath: config.build.assetsPublicPath,
       filename: config.build.index,
+      favicon: './src/assets/img/favicon.ico',
       template: 'index.html',
       inject: true,
       minify: {
@@ -79,26 +80,26 @@ var webpackConfig = merge(baseWebpackConfig, {
         path.join(__dirname, '../dist'),
         ['/home'],
         // (OPTIONAL) Options
-        {
+      {
             // NOTE: Unless you are relying on asynchronously rendered content,
             // such as after an Ajax request, none of these options should be
             // necessary. All synchronous scripts are already executed before
             // capturing the page content.
 
             // Wait until a specific event is fired on the document.
-            captureAfterDocumentEvent: 'custom-post-render-event',
+        captureAfterDocumentEvent: 'custom-post-render-event',
             // This is how you would trigger this example event:
             // document.dispatchEvent(new Event('custom-post-render-event'))
 
             // Wait until a specific element is detected with
             // document.querySelector.
-            captureAfterElementExists: '#content',
+        captureAfterElementExists: '#content',
 
             // Wait until a number of milliseconds has passed after scripts
             // have been executed. It's important to note that this may
             // produce unreliable results when relying on network
             // communication or other operations with highly variable timing.
-            captureAfterTime: 5000,
+        captureAfterTime: 5000,
 
             // NOTE: You can even combine strategies if you like. For example,
             // if you only _sometimes_ want to wait for an event to fire, you
@@ -107,30 +108,30 @@ var webpackConfig = merge(baseWebpackConfig, {
             // content will be captured after the first triggered strategy.
 
             // Instead of loudly failing on JS errors (the default), ignore them.
-            ignoreJSErrors: true,
+        ignoreJSErrors: true,
 
             // Because PhantomJS occasionally runs into an intermittent issue,
             // we will retry a page capture up to 10 times by default. You may
             // raise or lower this limit if you wish.
-            maxAttempts: 10,
+        maxAttempts: 10,
 
             // Prevent PhantomJS from navigating away from the URL passed to it
             // and prevent loading embedded iframes (e.g. Disqus and Soundcloud
             // embeds), which are not ideal for SEO and may introduce JS errors.
-            navigationLocked: true,
+        navigationLocked: true,
 
             // The options below expose configuration options for PhantomJS,
             // for the rare case that you need special settings for specific
             // systems or applications.
 
             // http://phantomjs.org/api/command-line.html#command-line-options
-            phantomOptions: '--disk-cache=true',
+        phantomOptions: '--disk-cache=true',
 
             // http://phantomjs.org/api/webpage/property/settings.html
-            phantomPageSettings: {
-                loadImages: true
+        phantomPageSettings: {
+              loadImages: true
             }
-        }
+      }
     )
   ]
 })

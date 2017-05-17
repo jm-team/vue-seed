@@ -45,7 +45,7 @@ var _app = new Vue({
   el: '#app',
   store,
   template: '<App/>',
-  data () {
+  data() {
     return {
       showFooter: false
     }
@@ -72,6 +72,9 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, form) => {
+  // 百度统计单页面pv量
+  _hmt.push(['_trackPageview', location.href]);
+
   // 公共底部延迟显示
   setTimeout(() => { _app.showFooter = true }, 300)
   // for SEO

@@ -72,6 +72,15 @@ import { Message } from 'element-ui'
         })
       },
 
+      // 获取RSA公钥
+      getRSA: function(){
+        return Vue.axios.get(`${API_ADDRESS}/getRSA`, {
+          params: {
+            t: Date.now()
+          }
+        })
+      },
+
       // 获取用户信息接口
       getUserInfo: function () {
         return Vue.axios.get(`/mock/userInfo.json`, {

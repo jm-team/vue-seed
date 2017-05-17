@@ -27,6 +27,7 @@ module.exports = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
+      favicon: './src/assets/img/favicon.ico',
       template: 'index.html',
       inject: true
     }),
