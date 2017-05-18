@@ -176,7 +176,7 @@ export default {
         openLoginDialogCallback() {
         },
         setUserIsLoginCookie() {
-            this.Cookie.setCookie('userIsLogin', false)
+            this.Util.cookie.setCookie('userIsLogin', false)
         },
         ...mapMutations([
             'changeLoginState'
@@ -192,10 +192,11 @@ export default {
         })
     }
     , created() {
+        console.dir(this)
         let _app = this.$parent
         // 检测到未登录时处理
         _app.$on('userNotLogin', () => {
-            this.Cookie.setCookie('userIsLogin', false)
+            this.Util.cookie.setCookie('userIsLogin', false)
             this.changeLoginState({ loginState: false })
             this.updateUserInfo({
                 userInfo: {}
@@ -204,7 +205,7 @@ export default {
 
         // 检测到已登录里处理
         _app.$on('userLogined', () => {
-            this.Cookie.setCookie('userIsLogin', true)
+            this.Util.cookie.setCookie('userIsLogin', true)
             this.changeLoginState({ loginState: true })
             this.Api.getUserInfo().then((data) => {
                 // 更新用户信息

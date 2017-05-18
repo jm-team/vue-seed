@@ -16,7 +16,7 @@ import App from './App'
 import router from './router'
 
 // 引入公共js
-import Public from 'service/public'
+import Util from 'service/util'
 
 // 引入公共api
 import Api from 'service/api'
@@ -38,7 +38,7 @@ Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 Vue.use(ElementUI)
 Vue.use(Api)
-Vue.use(Public)
+Vue.use(Util)
 
 /* eslint-disable no-new */
 var _app = new Vue({
