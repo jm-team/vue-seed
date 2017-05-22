@@ -7,6 +7,8 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var PrerenderSpaPlugin = require('prerender-spa-plugin')
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
@@ -23,16 +25,22 @@ var webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[name].[chunkhash].js')
   },
   plugins: [
+    // new webpack.DllReferencePlugin({
+    //   context: path.resolve(__dirname, '..'),
+    //   manifest: require('./vendor-manifest.json')
+    // }),    
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
-    }),
+    }),   
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       },
       sourceMap: false
     }),
+    // 压缩css资源
+    new OptimizeCssAssetsPlugin(),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
@@ -49,7 +57,8 @@ var webpackConfig = merge(baseWebpackConfig, {
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeAttributeQuotes: true,
+        minifyJS: true
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
@@ -76,6 +85,10 @@ var webpackConfig = merge(baseWebpackConfig, {
       name: 'manifest',
       chunks: ['vendor']
     }),
+    // 拷贝vendor.dll.js到构建目录
+    new CopyWebpackPlugin([
+            { from: 'src/vendor.dll.js', to: 'static/js' }
+    ]),     
     new PrerenderSpaPlugin(
         path.join(__dirname, '../dist'),
         ['/home'],

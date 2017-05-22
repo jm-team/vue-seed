@@ -33,10 +33,10 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
 
+Vue.use(ElementUI)
 Vue.use(lazyLoad)
 Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
-Vue.use(ElementUI)
 Vue.use(Api)
 Vue.use(Util)
 
@@ -56,6 +56,9 @@ var _app = new Vue({
 
 // 设置路由钩子
 router.beforeEach((to, from, next) => {
+  // console.dir('dsfewfe=============')
+  console.dir(_app.Api)
+  _app.Api.apiRequsetCancel()
   var userIsLogin = store.state.User.isLogin
   // 限制访问 releaseReasearch 路由
   if (userIsLogin !== 'true' && '/releaseResearch/'.match(`/${to.name}/`)) {

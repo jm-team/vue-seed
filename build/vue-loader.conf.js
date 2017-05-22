@@ -9,6 +9,9 @@ module.exports = {
       : config.dev.cssSourceMap,
     extract: isProduction
   })
+  ,extractCSS: true
+  // 添加转换的标签属性
+  ,transformToRequire:{img: ['src','errorimg'], image: 'xlink:href'}
   ,postcss: [
     require('autoprefixer')({
       browsers: ['last 2 versions']

@@ -1,6 +1,7 @@
 var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
+var webpack = require('webpack')
 var vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
@@ -36,6 +37,7 @@ module.exports = {
     }
   },
   module: {
+    noParse: /node_modules\/(element-ui\.js)/,
     rules: [
       {
         test: /\.vue$/,
@@ -64,5 +66,11 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins:[
+    new webpack.DllReferencePlugin({
+      context: path.resolve(__dirname, '..'),
+      manifest: require('./vendor-manifest.json')
+    })
+  ]
 }

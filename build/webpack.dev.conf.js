@@ -34,7 +34,8 @@ module.exports = merge(baseWebpackConfig, {
 
     // 拷贝mock数据文件到构建目录
     new CopyWebpackPlugin([
-            { from: 'src/mock', to: 'mock' }
+            { from: 'src/mock', to: 'mock' },
+            { from: 'src/vendor.dll.js', to: 'static/js' }
     ], {
       // 忽略选项
       ignore: [
