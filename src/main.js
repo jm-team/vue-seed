@@ -56,8 +56,6 @@ var _app = new Vue({
 
 // 设置路由钩子
 router.beforeEach((to, from, next) => {
-  // console.dir('dsfewfe=============')
-  console.dir(_app.Api)
   _app.Api.apiRequsetCancel()
   var userIsLogin = store.state.User.isLogin
   // 限制访问 releaseReasearch 路由
