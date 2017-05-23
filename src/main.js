@@ -74,7 +74,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, form) => {
   // 百度统计单页面pv量
-  _hmt.push(['_trackPageview', location.href]);
+  _hmt.push(['_trackPageview', to.path]);
 
   // 公共底部延迟显示
   setTimeout(() => { _app.showFooter = true }, 300)

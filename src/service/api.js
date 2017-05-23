@@ -3,7 +3,7 @@ import { Message } from 'element-ui'
 !(function () {
   // 引入api地址配置
   var API_ADDRESS = '/webapi/v2'
-  // var API_ADDRESS = '/mock'
+  var API_ADDRESS2 = '/mock'
 
   var Api = {}
   Api.install = function (Vue, options) {
@@ -59,28 +59,28 @@ import { Message } from 'element-ui'
       },
 
       topCarousel: function () {
-        return Vue.axios.get(`${API_ADDRESS}/indexBanner.json`, {
+        return Vue.axios.get(`${API_ADDRESS2}/indexBanner.json`, {
           apiName: '获取首页顶部banner'
         })
       },
 
       expertStyle: function () {
-        return Vue.axios.get(`${API_ADDRESS}/advantageExpertInfo.json`, {
+        return Vue.axios.get(`${API_ADDRESS2}/advantageExpertInfo.json`, {
           apiName: '获取专家风采数据'
         })
       },
 
       expertStyleBanner: function () {
-        return Vue.axios.get(`${API_ADDRESS}/betweenExpertBanner.json`)
+        return Vue.axios.get(`${API_ADDRESS2}/betweenExpertBanner.json`)
       },
 
       expertList: function () {
-        return Vue.axios.get(`${API_ADDRESS}/indexIndustryExp.json`)
+        return Vue.axios.get(`${API_ADDRESS2}/indexIndustryExp.json`)
       },
 
       // 底部轮播
       bottomCarousel: function () {
-        return Vue.axios.get(`${API_ADDRESS}/indexBannerBottom.json`)
+        return Vue.axios.get(`${API_ADDRESS2}/indexBannerBottom.json`)
       },
 
       technicianList: function (offset = 0, limit = 8) {
