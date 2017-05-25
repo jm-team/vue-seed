@@ -19,7 +19,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../src'),
-    filename: '[name].dll.js',
+    filename: '[name]_[hash].dll.js',
     library: '[name]_[hash]'
   },
   module: {

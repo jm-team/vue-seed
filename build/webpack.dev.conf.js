@@ -1,3 +1,4 @@
+var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
@@ -11,6 +12,16 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
+
+// 获取带hash值的dll文件名称
+var glob=require('glob')
+var dllJsFilePath,
+    dllJsFileName
+dllJsFilePath=glob.sync(path.join(__dirname, '../src/vendor_*.dll.js'))[0]
+if (dllJsFilePath){
+  dllJsFileName= path.basename(dllJsFilePath)
+}
+
 module.exports = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
@@ -29,13 +40,14 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       favicon: './src/assets/img/favicon.ico',
       template: 'index.html',
+      dllJsFileName : dllJsFileName,
       inject: true
     }),
 
     // 拷贝mock数据文件到构建目录
     new CopyWebpackPlugin([
             { from: 'src/mock', to: 'mock' },
-            { from: 'src/vendor.dll.js', to: 'static/js' }
+            { from: 'src/vendor_*.dll.js', to: 'static/js/[name].[ext]' }
     ], {
       // 忽略选项
       ignore: [

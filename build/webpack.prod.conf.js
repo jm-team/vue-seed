@@ -11,6 +11,16 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var env = config.build.env
 
+// 获取带hash值的dll文件名称
+var glob=require('glob')
+var dllJsFilePath,
+    dllJsFileName
+dllJsFilePath=glob.sync(path.join(__dirname, '../src/vendor_*.dll.js'))[0]
+if (dllJsFilePath){
+  // dllJsFileName= dllJsFilePath.split('src/')[1]
+  dllJsFileName= path.basename(dllJsFilePath)
+}
+
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -53,6 +63,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.index,
       favicon: './src/assets/img/favicon.ico',
       template: 'index.html',
+      dllJsFileName: dllJsFileName,
       inject: true,
       minify: {
         removeComments: true,
@@ -87,7 +98,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     // 拷贝vendor.dll.js到构建目录
     new CopyWebpackPlugin([
-            { from: 'src/vendor.dll.js', to: 'static/js' }
+            { from: 'src/vendor_*.dll.js', to: 'static/js/[name].[ext]' }
     ]),     
     new PrerenderSpaPlugin(
         path.join(__dirname, '../dist'),

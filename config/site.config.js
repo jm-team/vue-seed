@@ -3,7 +3,7 @@
  * @desc 配置依赖服务器地址
  * @type {{SERVER_ADDRESS: string, CENTER_ADDRESS: string, USERCENTER_ADDRESS: string, CDN_ADDRESS: string}}
  */
-const address = {
+var address = {
     // api服务器
   API_ADDRESS: 'http://192.168.26.119:1210',
     // API_ADDRESS: "http://192.168.23.224",

@@ -16,12 +16,12 @@ import { Message } from 'element-ui'
     var _this = Vue.prototype
 
     // 存放请求cancelToken
-    var apiCancelTokens=[]
+    var apiCancelTokens = []
     // request请求拦截处理
     Vue.axios.interceptors.request.use(function (config) {
       // 添加取消请求用的cancelToken
-      config.cancelToken=new Vue.axios.CancelToken(function executor(c) {
-            apiCancelTokens.push(c)
+      config.cancelToken = new Vue.axios.CancelToken(function executor(c) {
+        apiCancelTokens.push(c)
       })
       return config
     }, function (error) {
@@ -44,7 +44,7 @@ import { Message } from 'element-ui'
         // 如果请求未被取消，则处理错误信息
         let msg = Message(`${err.config.apiName || '获取数据'}失败`)
         console.error(msg.message)
-      }        
+      }
       return Promise.reject(err)
     })
 
@@ -53,13 +53,13 @@ import { Message } from 'element-ui'
       // 取消页面当前请求
       apiRequsetCancel: function () {
         // 依次取消请求
-        apiCancelTokens.forEach(function(cancel,k,s){cancel('请求被取消')})
+        apiCancelTokens.forEach(function (cancel, k, s) { cancel('请求被取消') })
         // 清空cancelToken
-        apiCancelTokens=[]
+        apiCancelTokens = []
       },
 
       topCarousel: function () {
-        return Vue.axios.get(`${API_ADDRESS2}/indexBanner.json`, {
+        return Vue.axios.get(`${API_ADDRESS2}/indexBanner1.json`, {
           apiName: '获取首页顶部banner'
         })
       },
@@ -97,12 +97,12 @@ import { Message } from 'element-ui'
           username: user,
           password: pwd
         }, {
-          apiName: '用户登录'
-        })
+            apiName: '用户登录'
+          })
       },
 
       // 获取RSA公钥
-      getRSA: function(){
+      getRSA: function () {
         return Vue.axios.get(`${API_ADDRESS}/getRSA`, {
           params: {
             t: Date.now()
@@ -180,7 +180,7 @@ import { Message } from 'element-ui'
         return Vue.axios.post(`${API_ADDRESS}/surveyBill`, reqData)
       },
 
-      detailedResearchReport () {
+      detailedResearchReport() {
         return Vue.axios.get(`/mock/detailedResearchReport.json`)
       },
 

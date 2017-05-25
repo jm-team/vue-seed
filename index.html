@@ -34,7 +34,8 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
-  <script src="<%= htmlWebpackPlugin.options.assetsPublicPath %>static/js/vendor.dll.js"></script>
+  <!--<script src="<%= htmlWebpackPlugin.options.assetsPublicPath %>static/js/vendor.dll.js"></script>-->
+  <script src="<%= htmlWebpackPlugin.options.assetsPublicPath %>static/js/<%= htmlWebpackPlugin.options.dllJsFileName %>"></script>
 </body>
 
 </html>
