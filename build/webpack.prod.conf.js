@@ -8,17 +8,15 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var PrerenderSpaPlugin = require('prerender-spa-plugin')
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
 var env = config.build.env
 
 // 获取带hash值的dll文件名称
-var glob=require('glob')
+var glob = require('glob')
 var dllJsFilePath,
-    dllJsFileName
-dllJsFilePath=glob.sync(path.join(__dirname, '../src/vendor_*.dll.js'))[0]
-if (dllJsFilePath){
-  // dllJsFileName= dllJsFilePath.split('src/')[1]
-  dllJsFileName= path.basename(dllJsFilePath)
+  dllJsFileName
+dllJsFilePath = glob.sync(path.join(__dirname, '../src/dlljs/vendor_*.dll.js'))[0]
+if (dllJsFilePath) {
+  dllJsFileName = path.basename(dllJsFilePath)
 }
 
 var webpackConfig = merge(baseWebpackConfig, {
@@ -42,7 +40,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
-    }),   
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
@@ -96,65 +94,61 @@ var webpackConfig = merge(baseWebpackConfig, {
       name: 'manifest',
       chunks: ['vendor']
     }),
-    // 拷贝vendor.dll.js到构建目录
-    new CopyWebpackPlugin([
-            { from: 'src/vendor_*.dll.js', to: 'static/js/[name].[ext]' }
-    ]),     
     new PrerenderSpaPlugin(
-        path.join(__dirname, '../dist'),
-        ['/home'],
-        // (OPTIONAL) Options
+      path.join(__dirname, '../dist'),
+      ['/home'],
+      // (OPTIONAL) Options
       {
-            // NOTE: Unless you are relying on asynchronously rendered content,
-            // such as after an Ajax request, none of these options should be
-            // necessary. All synchronous scripts are already executed before
-            // capturing the page content.
+        // NOTE: Unless you are relying on asynchronously rendered content,
+        // such as after an Ajax request, none of these options should be
+        // necessary. All synchronous scripts are already executed before
+        // capturing the page content.
 
-            // Wait until a specific event is fired on the document.
+        // Wait until a specific event is fired on the document.
         captureAfterDocumentEvent: 'custom-post-render-event',
-            // This is how you would trigger this example event:
-            // document.dispatchEvent(new Event('custom-post-render-event'))
+        // This is how you would trigger this example event:
+        // document.dispatchEvent(new Event('custom-post-render-event'))
 
-            // Wait until a specific element is detected with
-            // document.querySelector.
+        // Wait until a specific element is detected with
+        // document.querySelector.
         captureAfterElementExists: '#content',
 
-            // Wait until a number of milliseconds has passed after scripts
-            // have been executed. It's important to note that this may
-            // produce unreliable results when relying on network
-            // communication or other operations with highly variable timing.
+        // Wait until a number of milliseconds has passed after scripts
+        // have been executed. It's important to note that this may
+        // produce unreliable results when relying on network
+        // communication or other operations with highly variable timing.
         captureAfterTime: 5000,
 
-            // NOTE: You can even combine strategies if you like. For example,
-            // if you only _sometimes_ want to wait for an event to fire, you
-            // can create a timeout by combining captureAfterTime with
-            // captureAfterDocumentEvent. When combining strategies, page
-            // content will be captured after the first triggered strategy.
+        // NOTE: You can even combine strategies if you like. For example,
+        // if you only _sometimes_ want to wait for an event to fire, you
+        // can create a timeout by combining captureAfterTime with
+        // captureAfterDocumentEvent. When combining strategies, page
+        // content will be captured after the first triggered strategy.
 
-            // Instead of loudly failing on JS errors (the default), ignore them.
+        // Instead of loudly failing on JS errors (the default), ignore them.
         ignoreJSErrors: true,
 
-            // Because PhantomJS occasionally runs into an intermittent issue,
-            // we will retry a page capture up to 10 times by default. You may
-            // raise or lower this limit if you wish.
+        // Because PhantomJS occasionally runs into an intermittent issue,
+        // we will retry a page capture up to 10 times by default. You may
+        // raise or lower this limit if you wish.
         maxAttempts: 10,
 
-            // Prevent PhantomJS from navigating away from the URL passed to it
-            // and prevent loading embedded iframes (e.g. Disqus and Soundcloud
-            // embeds), which are not ideal for SEO and may introduce JS errors.
+        // Prevent PhantomJS from navigating away from the URL passed to it
+        // and prevent loading embedded iframes (e.g. Disqus and Soundcloud
+        // embeds), which are not ideal for SEO and may introduce JS errors.
         navigationLocked: true,
 
-            // The options below expose configuration options for PhantomJS,
-            // for the rare case that you need special settings for specific
-            // systems or applications.
+        // The options below expose configuration options for PhantomJS,
+        // for the rare case that you need special settings for specific
+        // systems or applications.
 
-            // http://phantomjs.org/api/command-line.html#command-line-options
+        // http://phantomjs.org/api/command-line.html#command-line-options
         phantomOptions: '--disk-cache=true',
 
-            // http://phantomjs.org/api/webpage/property/settings.html
+        // http://phantomjs.org/api/webpage/property/settings.html
         phantomPageSettings: {
-              loadImages: true
-            }
+          loadImages: true
+        }
       }
     )
   ]

@@ -3,8 +3,9 @@ var utils = require('./utils')
 var config = require('../config')
 var webpack = require('webpack')
 var vueLoaderConfig = require('./vue-loader.conf')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -67,10 +68,13 @@ module.exports = {
       }
     ]
   },
-  plugins:[
+  plugins: [
     new webpack.DllReferencePlugin({
       context: path.resolve(__dirname, '..'),
       manifest: require('./vendor-manifest.json')
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: 'src/dlljs', to: 'static/js' }
+    ])
   ]
 }

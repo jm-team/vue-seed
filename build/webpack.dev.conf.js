@@ -14,12 +14,12 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 })
 
 // 获取带hash值的dll文件名称
-var glob=require('glob')
+var glob = require('glob')
 var dllJsFilePath,
-    dllJsFileName
-dllJsFilePath=glob.sync(path.join(__dirname, '../src/vendor_*.dll.js'))[0]
-if (dllJsFilePath){
-  dllJsFileName= path.basename(dllJsFilePath)
+  dllJsFileName
+dllJsFilePath = glob.sync(path.join(__dirname, '../src/dlljs/vendor_*.dll.js'))[0]
+if (dllJsFilePath) {
+  dllJsFileName = path.basename(dllJsFilePath)
 }
 
 module.exports = merge(baseWebpackConfig, {
@@ -40,25 +40,24 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       favicon: './src/assets/img/favicon.ico',
       template: 'index.html',
-      dllJsFileName : dllJsFileName,
+      dllJsFileName: dllJsFileName,
       inject: true
     }),
 
     // 拷贝mock数据文件到构建目录
     new CopyWebpackPlugin([
-            { from: 'src/mock', to: 'mock' },
-            { from: 'src/vendor_*.dll.js', to: 'static/js/[name].[ext]' }
+      { from: 'src/mock', to: 'mock' }
     ], {
-      // 忽略选项
-      ignore: [
-      // Doesn't copy any files with a txt extension
-        '*.txt'
-      ],
-      // By default, we only copy modified files during
-      // a watch or webpack-dev-server build. Setting this
-      // to `true` copies all files.
-      copyUnmodified: true
-    }),
+        // 忽略选项
+        ignore: [
+          // Doesn't copy any files with a txt extension
+          '*.txt'
+        ],
+        // By default, we only copy modified files during
+        // a watch or webpack-dev-server build. Setting this
+        // to `true` copies all files.
+        copyUnmodified: true
+      }),
     new FriendlyErrorsPlugin()
   ]
 })

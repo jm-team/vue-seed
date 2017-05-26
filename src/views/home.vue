@@ -20,7 +20,8 @@
 
         <div class="content fn-clear">
           <div class="content-l fn-left">
-            <p>我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势我们的优势</p>
+            <p>{{ intro | subStr(25)}}</p>
+            <p>{{ intro2 | subStr(25)}}</p>
           </div>
           <div class="content-r fn-left">
             <p>We have the advantage ofWe have the advantage ofWe have the advantage ofWe have the advantage ofWe have the advantage
@@ -134,6 +135,22 @@
 <script>
   import Vue from 'vue'
 
+  // function sliceStr(val, length) {
+  //   var _newStr
+  //   _newStr = val.substr(0, length)
+  //   newStr = newStr + _newStr
+  //   console.log(newStr)
+  //   notChineseStrLength = _newStr.split(/[\x00-\xff]/).length - 1
+  //   var newLength = length - notChineseStrLength
+  //   if (notChineseStrLength > 0) {
+  //     excludeStrLength = _newStr.split(/[@&#~%<>》《W—]/).length - 1
+  //     var notChineseLength = parseInt((notChineseStrLength - excludeStrLength) / 2)
+  //     newLength = newLength + notChineseLength + excludeStrLength // 把非中文两个算一个后的长度
+  //     console.dir(newLength)
+  //     console.log(length - newLength)
+  //     sliceStr(val.substr(length), length - newLength)
+  //   }
+  // }
   export default {
     data() {
       return {
@@ -142,7 +159,9 @@
         styleInfo: [],
         styleBanner: [],
         expertLists: [],
-        bottomCarousels: []
+        bottomCarousels: [],
+        intro: '我们｛｝<>1１２１２３〖〗【】的，12323!$$‘’？｛｝优—｛｝——势●★我｛｝｛｝www们的《》优势@#@*&^%我们的12321优势我们的',
+        intro2: '我们的优我们的优势我我们的优势我势我我们的优势我我们的优势我我们的优势我'
       }
     },
     computed: {

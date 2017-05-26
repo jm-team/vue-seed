@@ -2,8 +2,13 @@ const path = require('path')
 const webpack = require('webpack')
 var vueLoaderConfig = require('./vue-loader.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+const RemoveWebpackPlugin = require('remove-webpack-plugin')
 
-function resolve (dir) {
+console.log('=======================================')
+console.log('   请确保将新增的dll文件提交至git/svn   ')
+console.log('=======================================')
+
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -18,7 +23,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, '../src'),
+    path: path.resolve(__dirname, '../src/dlljs'),
     filename: '[name]_[hash].dll.js',
     library: '[name]_[hash]'
   },
@@ -37,7 +42,6 @@ module.exports = {
     ]
   },
   plugins: [
-    // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn|en-gb/),
     new webpack.DllPlugin({
       path: path.join(__dirname, '.', '[name]-manifest.json'),
       libraryTarget: 'commonjs2',
@@ -47,6 +51,8 @@ module.exports = {
       compress: {
         warnings: false
       }
-    })
+    }),
+    // remove vendor.***.dll.js
+    new RemoveWebpackPlugin('src/dlljs')
   ]
 }

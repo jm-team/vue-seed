@@ -59,7 +59,7 @@ import { Message } from 'element-ui'
       },
 
       topCarousel: function () {
-        return Vue.axios.get(`${API_ADDRESS2}/indexBanner1.json`, {
+        return Vue.axios.get(`${API_ADDRESS2}/indexBanner.json`, {
           apiName: '获取首页顶部banner'
         })
       },

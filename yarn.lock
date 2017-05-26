@@ -3900,6 +3900,13 @@ remove-trailing-separator@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/remove-trailing-separator/download/remove-trailing-separator-1.0.1.tgz#615ebb96af559552d4bf4057c8436d486ab63cc4"
 
+remove-webpack-plugin@^1.2.2:
+  version "1.2.2"
+  resolved "http://registry.npm.taobao.org/remove-webpack-plugin/download/remove-webpack-plugin-1.2.2.tgz#68ed386f5079a7fca2842f1df731e677334f6928"
+  dependencies:
+    rimraf "^2.5.2"
+    validol "^1.0.0"
+
 renderkid@^2.0.1:
   version "2.0.1"
   resolved "http://registry.npm.taobao.org/renderkid/download/renderkid-2.0.1.tgz#898cabfc8bede4b7b91135a3ffd323e58c0db319"
@@ -4017,7 +4024,7 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@2, rimraf@^2.2.8, rimraf@^2.5.1, rimraf@^2.6.1:
+rimraf@2, rimraf@^2.2.8, rimraf@^2.5.1, rimraf@^2.5.2, rimraf@^2.6.1:
   version "2.6.1"
   resolved "http://registry.npm.taobao.org/rimraf/download/rimraf-2.6.1.tgz#c2338ec643df7a1b7fe5c54fa86f57428a55f33d"
   dependencies:
@@ -4593,6 +4600,10 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
+
+validol@^1.0.0:
+  version "1.2.2"
+  resolved "http://registry.npm.taobao.org/validol/download/validol-1.2.2.tgz#535229111b08f02145fcd74da303d8666a439cdb"
 
 vary@~1.1.0:
   version "1.1.1"
