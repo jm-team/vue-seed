@@ -85,6 +85,7 @@
     }
   },
   "optionalDependencies": {
+    "husky": "^0.13.4",
     "validate-commit-msg": "^2.12.1"
   }
 }
