@@ -8,7 +8,7 @@
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "build:dll": "webpack --config build/webpack.dll.conf.js",
-    "commitmsg": "validate-commit-msg",
+    "commitmsg": "validate-commit-msg"
   },
   "dependencies": {
     "axios": "^0.16.1",
