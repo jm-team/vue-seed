@@ -73,6 +73,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, form) => {
+  // 修改标题
   document.title = to.meta.title || 'vue-seed'
 
   // 百度统计单页面pv量
