@@ -67,5 +67,23 @@
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
+  },
+  "config": {
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert"
+      ]
+    }
+  },
+  "optionalDependencies": {
+    "validate-commit-msg": "^2.12.1"
   }
 }

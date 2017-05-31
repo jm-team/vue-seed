@@ -13,7 +13,7 @@ Vue.use(Router)
 
 var myrouter = new Router({
   mode: 'history',
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     } else {
@@ -21,7 +21,7 @@ var myrouter = new Router({
     }
   },
   routes: [
-        // 首页
+    // 首页
     {
       path: '/',
       name: 'home',
@@ -31,7 +31,7 @@ var myrouter = new Router({
       path: '/home',
       redirect: '/'
     },
-        // 专家列表页
+    // 专家列表页
     {
       path: '/expert',
       query: {
@@ -39,24 +39,30 @@ var myrouter = new Router({
         business: ''        // 行业
       },
       name: 'expert',
-      component: expert
+      component: expert,
+      meta: {
+        title: '专家列表页'
+      }
     },
 
-        // 专家详情页
+    // 专家详情页
     {
       path: '/expert/:id',
       name: 'expertDetail',
-      component: expertDetail
+      component: expertDetail,
+      meta: {
+        title: '专家详情页'
+      }
     },
 
-        // 企业研报页
+    // 企业研报页
     {
       path: '/companyResearch/:id',
       name: 'companyResearch',
       component: companyResearch
     },
 
-        // 发布调研单页
+    // 发布调研单页
     {
       path: '/releaseResearch',
       query: {
@@ -65,7 +71,7 @@ var myrouter = new Router({
       name: 'releaseResearch',
       component: releaseResearch
     },
-        // 常见问题类页面
+    // 常见问题类页面
     {
       path: '/service/:artId',
       name: 'service',
