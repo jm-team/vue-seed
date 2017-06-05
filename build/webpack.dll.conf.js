@@ -3,10 +3,8 @@ const webpack = require('webpack')
 var vueLoaderConfig = require('./vue-loader.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 const RemoveWebpackPlugin = require('remove-webpack-plugin')
-
-console.log('=======================================')
-console.log('   请确保将新增的dll文件提交至git/svn   ')
-console.log('=======================================')
+const WebpackOnBuildPlugin = require('on-build-webpack')
+const exec = require('child_process').exec
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -53,6 +51,11 @@ module.exports = {
       }
     }),
     // remove vendor.***.dll.js
-    new RemoveWebpackPlugin('src/dlljs')
+    new RemoveWebpackPlugin('src/dlljs'),
+    // 将新增的dll文件提交至git
+    new WebpackOnBuildPlugin(function (stats) {
+      // Do whatever you want...
+      exec('git add -A')
+    })
   ]
 }
