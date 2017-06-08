@@ -55,6 +55,7 @@ module.exports = {
     // 将新增的dll文件提交至git
     new WebpackOnBuildPlugin(function (stats) {
       // Do whatever you want...
+      exec('cd src/dlljs')
       exec('git add -A')
     })
   ]
