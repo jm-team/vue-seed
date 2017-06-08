@@ -6,90 +6,57 @@
         <!-- <span @click="explainDialogVisible=true">发布说明</span> -->
       </div>
       <div class="demand-form">
-        <el-form :model="demandForm"
-                 :rules="demandFormVerifyRule"
-                 ref="demandForm"
-                 label-width="125px">
-          <div class="expert-baseinfo"
-               v-if="demandForm.objectId">
+        <el-form :model="demandForm" :rules="demandFormVerifyRule" ref="demandForm" label-width="125px">
+          <div class="expert-baseinfo" v-if="demandForm.objectId">
             <div class="company-info-title">专家信息：</div>
             <div class="baseinfo">
-              <h3><span :title="expertInfo.expertName">{{ expertInfo.expertName | subStr(6) }}</span><span class="city" v-if="expertInfo.city" :title="expertInfo.city">{{ expertInfo.city | subStr(10) }}</span></h3>
-              <p><span :title="expertInfo.positionName">{{ expertInfo.positionName | subStr(10) }}</span><span v-if="expertInfo.positionName && expertInfo.companyName"> | </span><span v-if="expertInfo.companyName"
-                      :title="expertInfo.companyName">{{ expertInfo.companyName | subStr(15) }}</span> <span v-if="expertInfo.yearsOfWorking"> {{ expertInfo.yearsOfWorking }}年</span></p>
+              <h3>
+                <span :title="expertInfo.expertName">{{ expertInfo.expertName | subStr(6) }}</span>
+                <span class="city" v-if="expertInfo.city" :title="expertInfo.city">{{ expertInfo.city | subStr(10) }}</span>
+              </h3>
+              <p>
+                <span :title="expertInfo.positionName">{{ expertInfo.positionName | subStr(10) }}</span>
+                <span v-if="expertInfo.positionName && expertInfo.companyName"> | </span>
+                <span v-if="expertInfo.companyName" :title="expertInfo.companyName">{{ expertInfo.companyName | subStr(15) }}</span>
+                <span v-if="expertInfo.yearsOfWorking"> {{ expertInfo.yearsOfWorking }}年</span>
+              </p>
               <p>{{ expertInfo.expertIntroduces | subStr(165) }}</p>
             </div>
           </div>
           <div class="company-info-title required">调研公司信息：</div>
-          <el-form-item prop="companyIntroduces"
-                        label-width="1px">
-            <el-input type="textarea"
-                      :rows="5"
-                      autofocus="true"
-                      placeholder="请尽可能的对公司信息进行描述，以便客服人员安排相应的专家进行调研"
-                      v-model="demandForm.companyIntroduces">
+          <el-form-item prop="companyIntroduces" label-width="1px">
+            <el-input type="textarea" :rows="5" autofocus="true" placeholder="请尽可能的对公司信息进行描述，以便客服人员安排相应的专家进行调研" v-model="demandForm.companyIntroduces">
             </el-input>
           </el-form-item>
           <div class="company-info-title required">调研描述：</div>
-          <el-form-item prop="content"
-                        label-width="1px">
-            <el-input type="textarea"
-                      :rows="5"
-                      autofocus="true"
-                      placeholder="请尽可能说明具体内容问题，并对背景有所介绍，让专家能够快速理解您调查内容的重点"
-                      v-model="demandForm.content">
+          <el-form-item prop="content" label-width="1px">
+            <el-input type="textarea" :rows="5" autofocus="true" placeholder="请尽可能说明具体内容问题，并对背景有所介绍，让专家能够快速理解您调查内容的重点" v-model="demandForm.content">
             </el-input>
           </el-form-item>
           <div class="user-info">
-            <el-form-item prop="intentionUserName"
-                          label="发布者名称：">
-              <el-input type="text"
-                        v-model="demandForm.intentionUserName"
-                        auto-complete="off"
-                        placeholder="请填写发布者的姓名"></el-input>
+            <el-form-item prop="intentionUserName" label="发布者名称：">
+              <el-input type="text" v-model="demandForm.intentionUserName" auto-complete="off" placeholder="请填写发布者的姓名"></el-input>
             </el-form-item>
-            <el-form-item prop="intentionUserCompany"
-                          label="发布者公司：">
-              <el-input type="text"
-                        v-model="demandForm.intentionUserCompany"
-                        auto-complete="off"
-                        placeholder="请填写发布者公司信息，如公司名称等"></el-input>
+            <el-form-item prop="intentionUserCompany" label="发布者公司：">
+              <el-input type="text" v-model="demandForm.intentionUserCompany" auto-complete="off" placeholder="请填写发布者公司信息，如公司名称等"></el-input>
             </el-form-item>
-            <el-form-item prop="intentionUserJob"
-                          label="发布者职务：">
-              <el-input type="text"
-                        v-model="demandForm.intentionUserJob"
-                        auto-complete="off"
-                        placeholder="请填写发布者的职务信息"></el-input>
+            <el-form-item prop="intentionUserJob" label="发布者职务：">
+              <el-input type="text" v-model="demandForm.intentionUserJob" auto-complete="off" placeholder="请填写发布者的职务信息"></el-input>
             </el-form-item>
-            <el-form-item prop="intentionUserEmail"
-                          label="电子邮箱：">
-              <el-input type="text"
-                        v-model="demandForm.intentionUserEmail"
-                        auto-complete="off"
-                        placeholder="请填写发布者电子邮箱"></el-input>
+            <el-form-item prop="intentionUserEmail" label="电子邮箱：">
+              <el-input type="text" v-model="demandForm.intentionUserEmail" auto-complete="off" placeholder="请填写发布者电子邮箱"></el-input>
             </el-form-item>
-            <el-form-item prop="intentionUserTel"
-                          label="联系方式：">
-              <el-input type="text"
-                        v-model="demandForm.intentionUserTel"
-                        auto-complete="off"
-                        placeholder="请务必填写联系方式，以便后续联系"></el-input>
+            <el-form-item prop="intentionUserTel" label="联系方式：">
+              <el-input type="text" v-model="demandForm.intentionUserTel" auto-complete="off" placeholder="请务必填写联系方式，以便后续联系"></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary"
-                         @click="demandSubmit"
-                         class="btn-demandSubmit"
-                         :disabled="formSubmitting">提交</el-button>
+              <el-button type="primary" @click="demandSubmit" class="btn-demandSubmit" :disabled="formSubmitting">提交</el-button>
             </el-form-item>
           </div>
         </el-form>
   
         <!-- 发布说明弹窗 -->
-        <el-dialog title="需求发布说明"
-                   v-model="explainDialogVisible"
-                   custom-class="yzk-dialog explain-dialog"
-                   size="small">
+        <el-dialog title="需求发布说明" v-model="explainDialogVisible" custom-class="yzk-dialog explain-dialog" size="small">
           <div class="explain-content">
             <p>- 发布者按照需求表单填写好需求咨询单后，云智库将有专人与您联系。</p>
             <p>- 云智库与发布者确认好需求后，将正式发布此需求并告知发布者。</p>
@@ -100,9 +67,7 @@
             <p>- 任何其他疑问，可联系云智库客服电话：400-860-0550。</p>
           </div>
           <div class="dialog-btn-item">
-            <el-button type="primary"
-                       class="btn-iknow"
-                       @click="explainDialogVisible = false">知道了</el-button>
+            <el-button type="primary" class="btn-iknow" @click="explainDialogVisible = false">知道了</el-button>
           </div>
           </span>
         </el-dialog>
