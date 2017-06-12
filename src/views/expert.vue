@@ -1,44 +1,23 @@
 <template>
   <div class="expert-list-wrap">
     <div class="technician w1190">
-      <!--<div class="industry-tag">
-          <span>筛选行业:</span>
-          <a v-for="(item,index) in Items" v-on:click="tabActiveIndex = index" :class="{active: tabActiveIndex === index}">法律咨询</a>
-          <a>其他</a>
-        </div>-->
   
-      <div class="technician-list fn-clear"
-           v-for="(item,index) in technicianLists">
+      <div class="technician-list fn-clear" v-for="(item,index) in technicianLists">
         <div class="technician-list-l fn-left">
           <!-- <img :src="item.imgUrl | imgCdn"> -->
-          <img v-if="item.imgUrl"
-               v-lazyload="lazyLoadPic(item.imgUrl)"
-               @click="jpExpertDetail(item.id)">
-          <img v-else
-               src="../assets/img/head.png"
-               @click="jpExpertDetail(item.id)">
+          <img v-if="item.imgUrl" v-lazyload="Filters.imgCdn(item.imgUrl)" @click="jpExpertDetail(item.id)">
+          <img v-else src="../assets/img/head.png" @click="jpExpertDetail(item.id)">
         </div>
         <div class="technican-list-r fn-left">
           <div class="expert-brief">
-            <h5 @click="jpExpertDetail(item.id)"
-                :title="item.expertName">{{item.expertName | subStr(6)}}</h5>
-            <span class="location"
-                  :title="item.city">{{ item.city | subStr(10) }}</span>
-            <span class="company"
-                  :title="item.positionName"
-                  v-if="item.positionName">{{item.positionName | subStr(10) }}</span><span v-if="isNotEmpty(item)"> | </span><span :title="item.companyName"
-                  v-if="item.companyName">{{item.companyName | subStr(10)}}</span>
-            <button v-if="item.isFavorite == -1"
-                    class="collection"
-                    :plain="true"
-                    @click="handleCollection(1,item,index)">收藏专家</button>
-            <button v-else-if="item.isFavorite == 0"
-                    class="collection"
-                    :plain="true"
-                    @click="handleCollection(1,item,index)">收藏专家</button>
-            <button v-else
-                    class="not-collection"
-                    @click="handleCollection(0,item,index)">取消收藏</button>
+            <h5 @click="jpExpertDetail(item.id)" :title="item.expertName">{{item.expertName | subStr(6)}}</h5>
+            <span class="location" :title="item.city">{{ item.city | subStr(10) }}</span>
+            <span class="company" :title="item.positionName" v-if="item.positionName">{{item.positionName | subStr(10) }}</span>
+            <span v-if="isNotEmpty(item)"> | </span>
+            <span :title="item.companyName" v-if="item.companyName">{{item.companyName | subStr(10)}}</span>
+            <button v-if="item.isFavorite == -1" class="collection" :plain="true" @click="handleCollection(1,item,index)">收藏专家</button>
+            <button v-else-if="item.isFavorite == 0" class="collection" :plain="true" @click="handleCollection(1,item,index)">收藏专家</button>
+            <button v-else class="not-collection" @click="handleCollection(0,item,index)">取消收藏</button>
           </div>
           <div class="expert-detail">
             <h4>专家简介</h4>
@@ -49,11 +28,7 @@
   
       <!--分页-->
       <div class="block">
-        <el-pagination @current-change="handleCurrentChange"
-                       :current-page="currentPage1"
-                       layout="prev, pager, next, jumper"
-                       :page-size="8"
-                       :total="technicianListsAll.totalSize">
+        <el-pagination @current-change="handleCurrentChange" :current-page="currentPage1" layout="prev, pager, next, jumper" :page-size="8" :total="technicianListsAll.totalSize">
         </el-pagination>
       </div>
     </div>
@@ -61,7 +36,6 @@
 </template>
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
-import Vue from 'vue'
 
 export default {
   data() {
@@ -99,11 +73,8 @@ export default {
     }
   },
   methods: {
-    lazyLoadPic(url) {
-      return Vue.filter('imgCdn')(url)
-    },
     isNotEmpty(item) {
-      if (item.positionName && 　item.companyName) 　{
+      if (item.positionName && item.companyName) {
         return true;
       }
       return false;

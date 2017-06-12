@@ -33,6 +33,9 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
 
+// 将过滤器挂载到vue原型上，方便在实例中使用
+Vue.prototype.Filters = filters
+
 Vue.use(ElementUI)
 Vue.use(lazyLoad)
 Vue.use(VueRouter)
