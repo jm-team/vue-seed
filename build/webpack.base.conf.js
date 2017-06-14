@@ -1,9 +1,9 @@
 var path = require('path')
-var utils = require('./utils')
-var config = require('../config')
 var webpack = require('webpack')
-var vueLoaderConfig = require('./vue-loader.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
+var vueLoaderConfig = require('./vue-loader.conf')
+var config = require('../config')
+var utils = require('./utils')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -75,7 +75,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
-        from: 'src/assets/js/vendor', to: 'static/js'
+        from: config.dll, to: 'static/js'
       },
       {
         from: 'src/mock', to: 'mock'

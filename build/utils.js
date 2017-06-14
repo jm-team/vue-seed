@@ -13,7 +13,7 @@ exports.assetsPath = function (_path) {
 exports.cssLoaders = function (options) {
   options = options || {}
   // generate loader string to be used with extract text plugin
-  function generateLoaders (loaders) {
+  function generateLoaders(loaders) {
     var sourceLoader = loaders.map(function (loader) {
       var extraParamChar
       if (/\?/.test(loader)) {
@@ -66,7 +66,8 @@ exports.styleLoaders = function (options) {
 
 // 获取带hash值的dll文件名称
 exports.getDllFileName = function (dllPath) {
-    var dllJsFilePath = glob.sync(path.join(__dirname, dllPath || config.dll))[0]
+  var dllFilePath = `${config.dll}/vendor.*.dll.js`
+  var dllJsFile = glob.sync(path.join(__dirname, "..", dllPath || dllFilePath))[0]
 
-    return dllJsFilePath ? path.basename(dllJsFilePath) : ''
+  return dllJsFile ? path.basename(dllJsFile) : ''
 }

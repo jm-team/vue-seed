@@ -3,7 +3,8 @@ var path = require('path')
 var site = require('./site.config')
 
 module.exports = {
-  dll: site.dll,
+  // dll文件存放位置
+  dll: 'src/assets/js/vendor',
   build: {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),

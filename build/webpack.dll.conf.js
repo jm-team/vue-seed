@@ -1,10 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
-var vueLoaderConfig = require('./vue-loader.conf')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
 const RemoveWebpackPlugin = require('remove-webpack-plugin')
 const WebpackOnBuildPlugin = require('on-build-webpack')
 const exec = require('child_process').exec
+
+var vueLoaderConfig = require('./vue-loader.conf')
+var config = require('../config')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -21,7 +22,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, '../src/assets/js/vendor'),
+    path: path.resolve(__dirname, '..', config.dll),
     filename: '[name].[hash:8].dll.js',
     library: '[name]_[hash:8]'
   },
@@ -51,11 +52,11 @@ module.exports = {
       }
     }),
     // remove vendor.***.dll.js
-    new RemoveWebpackPlugin('src/assets/js/vendor'),
+    new RemoveWebpackPlugin(config.dll),
     // 将新增的dll文件提交至git
     new WebpackOnBuildPlugin(function (stats) {
       // Do whatever you want...
-      exec('cd src/assets/js/vendor && git add -A')
+      exec(`cd ${config.dll} && git add -A`)
     })
   ]
 }
