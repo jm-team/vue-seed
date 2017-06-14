@@ -8,6 +8,7 @@ module.exports = {
   build: {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),
+    favicon: path.resolve(__dirname, '../src/assets/img/favicon.ico'),
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     // assetsPublicPath: '/',
@@ -30,6 +31,7 @@ module.exports = {
     env: require('./dev.env'),
     port: 8080,
     autoOpenBrowser: true,
+    favicon: path.resolve(__dirname, '../src/assets/img/favicon.ico'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: site.api_proxy,

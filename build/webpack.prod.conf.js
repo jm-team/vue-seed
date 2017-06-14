@@ -51,7 +51,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       assetsPublicPath: config.build.assetsPublicPath,
       filename: config.build.index,
-      favicon: './src/assets/img/favicon.ico',
+      favicon: config.build.favicon,
       template: 'index.html',
       dllJsFileName: utils.getDllFileName(),
       inject: true,
