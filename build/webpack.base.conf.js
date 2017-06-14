@@ -74,7 +74,22 @@ module.exports = {
       manifest: require('./vendor-manifest.json')
     }),
     new CopyWebpackPlugin([
-      { from: 'src/dlljs', to: 'static/js' }
-    ])
+      {
+        from: 'src/assets/js/vendor', to: 'static/js'
+      },
+      {
+        from: 'src/mock', to: 'mock'
+      }
+    ], {
+      // 忽略选项
+      ignore: [
+        // Doesn't copy any files with a txt extension
+        '*.txt'
+      ],
+      // By default, we only copy modified files during
+      // a watch or webpack-dev-server build. Setting this
+      // to `true` copies all files.
+      copyUnmodified: true
+    }),
   ]
 }

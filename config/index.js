@@ -3,6 +3,7 @@ var path = require('path')
 var site = require('./site.config')
 
 module.exports = {
+  dll: site.dll,
   build: {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),

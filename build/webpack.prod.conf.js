@@ -8,16 +8,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var PrerenderSpaPlugin = require('prerender-spa-plugin')
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+var ImageminPlugin = require('imagemin-webpack-plugin').default
 var env = config.build.env
-
-// 获取带hash值的dll文件名称
-var glob = require('glob')
-var dllJsFilePath,
-  dllJsFileName
-dllJsFilePath = glob.sync(path.join(__dirname, '../src/dlljs/vendor_*.dll.js'))[0]
-if (dllJsFilePath) {
-  dllJsFileName = path.basename(dllJsFilePath)
-}
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -29,8 +21,8 @@ var webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? '#source-map' : false,
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[name].[chunkhash].js')
+    filename: utils.assetsPath('js/[name].[chunkhash:8].js'),
+    chunkFilename: utils.assetsPath('js/[name].[chunkhash:8].js')
   },
   plugins: [
     // new webpack.DllReferencePlugin({
@@ -51,7 +43,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new OptimizeCssAssetsPlugin(),
     // extract css into its own file
     new ExtractTextPlugin({
-      filename: utils.assetsPath('css/[name].[contenthash].css')
+      filename: utils.assetsPath('css/[name].[contenthash:8].css')
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
@@ -61,7 +53,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.index,
       favicon: './src/assets/img/favicon.ico',
       template: 'index.html',
-      dllJsFileName: dllJsFileName,
+      dllJsFileName: utils.getDllFileName(),
       inject: true,
       minify: {
         removeComments: true,

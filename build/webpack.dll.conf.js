@@ -21,9 +21,9 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, '../src/dlljs'),
-    filename: '[name]_[hash].dll.js',
-    library: '[name]_[hash]'
+    path: path.resolve(__dirname, '../src/assets/js/vendor'),
+    filename: '[name].[hash:8].dll.js',
+    library: '[name]_[hash:8]'
   },
   module: {
     loaders: [
@@ -43,7 +43,7 @@ module.exports = {
     new webpack.DllPlugin({
       path: path.join(__dirname, '.', '[name]-manifest.json'),
       libraryTarget: 'commonjs2',
-      name: '[name]_[hash]'
+      name: '[name]_[hash:8]'
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -51,12 +51,11 @@ module.exports = {
       }
     }),
     // remove vendor.***.dll.js
-    new RemoveWebpackPlugin('src/dlljs'),
+    new RemoveWebpackPlugin('src/assets/js/vendor'),
     // 将新增的dll文件提交至git
     new WebpackOnBuildPlugin(function (stats) {
       // Do whatever you want...
-      exec('cd src/dlljs')
-      exec('git add -A')
+      exec('cd src/assets/js/vendor && git add -A')
     })
   ]
 }

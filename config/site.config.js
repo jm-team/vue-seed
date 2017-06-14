@@ -30,5 +30,6 @@ module.exports = {
   api_proxy: {
     '/webapi/**': address.API_ADDRESS,
     '/sso': address.API_ADDRESS
-  }
+  },
+  dll: '../src/assets/js/vendor/vendor.*.dll.js'
 }

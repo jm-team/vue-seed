@@ -1,6 +1,7 @@
 var path = require('path')
-var config = require('../config')
+var glob = require('glob')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var config = require('../config')
 
 exports.assetsPath = function (_path) {
   var assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -61,4 +62,11 @@ exports.styleLoaders = function (options) {
     })
   }
   return output
+}
+
+// 获取带hash值的dll文件名称
+exports.getDllFileName = function (dllPath) {
+    var dllJsFilePath = glob.sync(path.join(__dirname, dllPath || config.dll))[0]
+
+    return dllJsFilePath ? path.basename(dllJsFilePath) : ''
 }
