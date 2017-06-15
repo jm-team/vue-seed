@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-import User from './user.js'
-import Site from './site.js'
+import User from "./user.js";
+import Site from "./site.js";
 
 Vue.use(Vuex)
 

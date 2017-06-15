@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue";
+import Router from "vue-router";
 
 // 引入路由视图，懒加载处理
 const home = r => require.ensure([], () => r(require('views/home')), 'home')
@@ -17,7 +17,7 @@ var myrouter = new Router({
     if (savedPosition) {
       return savedPosition
     } else {
-      return { x: 0, y: 0 }
+      return {x: 0, y: 0}
     }
   },
   routes: [

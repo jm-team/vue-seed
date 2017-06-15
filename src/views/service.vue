@@ -5,7 +5,8 @@
         <h3>{{ categoryName}}</h3>
         <ul>
           <li v-for="nav in artLeftlist.arts">
-            <a href="javascript:;" @click="changeArtDetail(nav.id)" :class=" nav.id == artDetail.id ? 'active' : ''">{{ nav.title}}</a>
+            <a href="javascript:;" @click="changeArtDetail(nav.id)"
+               :class=" nav.id == artDetail.id ? 'active' : ''">{{ nav.title}}</a>
           </li>
         </ul>
       </div>
@@ -21,128 +22,128 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      artId: this.$route.params.artId || ''
-      , artDetail: {}
-      , categoryName: {}
-      , artLeftlist: {}
-    }
-  },
-  created() {
-    this.getArtDetail(this.artId)
-    this.getArtLeftbar(this.artId)
-    console.dir(this.Api.getArtDetail(this.artId))
-  },
-  watch: {
-    $route(to, from) {
-      this.getArtDetail(to.params.artId)
-      this.getArtLeftbar(to.params.artId)
-    }
-  },
-  methods: {
-    getArtDetail(artId) {
-      this.Api.getArtDetail(artId).then((rep) => {
-        if (rep.data.statusCode == 200) {
-          this.artDetail = rep.data.rows
-        } else {
-          this.$message({
-            message: rep.data.desc || '获取数据出错',
-            type: 'error'
-          })
-        }
-      })
+  export default {
+    data() {
+      return {
+        artId: this.$route.params.artId || ''
+        , artDetail: {}
+        , categoryName: {}
+        , artLeftlist: {}
+      }
     },
-    getArtLeftbar(artId) {
-      this.Api.getArtLeftbar(artId).then((rep) => {
-        if (rep.data.statusCode == 200) {
-          this.artLeftlist = rep.data.rows
-          this.categoryName = rep.data.rows.cmsCategory.categoryName
-        } else {
-          this.$message({
-            message: rep.data.desc || '获取数据出错',
-            type: 'error'
-          })
-        }
-      })
+    created() {
+      this.getArtDetail(this.artId)
+      this.getArtLeftbar(this.artId)
+      console.dir(this.Api.getArtDetail(this.artId))
     },
-    changeArtDetail(artId) {
-      this.getArtDetail(artId)
+    watch: {
+      $route(to, from) {
+        this.getArtDetail(to.params.artId)
+        this.getArtLeftbar(to.params.artId)
+      }
+    },
+    methods: {
+      getArtDetail(artId) {
+        this.Api.getArtDetail(artId).then((rep) => {
+          if (rep.data.statusCode == 200) {
+            this.artDetail = rep.data.rows
+          } else {
+            this.$message({
+              message: rep.data.desc || '获取数据出错',
+              type: 'error'
+            })
+          }
+        })
+      },
+      getArtLeftbar(artId) {
+        this.Api.getArtLeftbar(artId).then((rep) => {
+          if (rep.data.statusCode == 200) {
+            this.artLeftlist = rep.data.rows
+            this.categoryName = rep.data.rows.cmsCategory.categoryName
+          } else {
+            this.$message({
+              message: rep.data.desc || '获取数据出错',
+              type: 'error'
+            })
+          }
+        })
+      },
+      changeArtDetail(artId) {
+        this.getArtDetail(artId)
+      }
     }
   }
-}
 
 </script>
 
 <style lang="scss" rel="style/scss">
-@import '../assets/css/common.scss';
+  @import '../assets/css/common.scss';
 
-.service {
-  position: relative;
-  border-top: 2px solid $color-2788e8;
-  padding: 60px 0;
-  .layout-wrap {
-    padding-left: 200px;
-  }
-  .left-navbar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 200px;
-    padding: 10px 0;
-    border: 1px solid $border-color;
-    border-right: none;
-    min-height: 300px;
-    h3 {
-      font-size: 16px;
-      font-weight: normal;
-      color: $font-3e3e3e;
-      line-height: 36px;
-      border-bottom: 1px solid $border-color;
-      margin: 0 20px 10px;
+  .service {
+    position: relative;
+    border-top: 2px solid $color-2788e8;
+    padding: 60px 0;
+    .layout-wrap {
+      padding-left: 200px;
     }
-    ul {
-      li {
-        a {
-          display: block;
-          padding-left: 50px;
-          line-height: 40px;
-          background: url('../assets/img/icon-dot-default.png') no-repeat 20px center;
+    .left-navbar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 200px;
+      padding: 10px 0;
+      border: 1px solid $border-color;
+      border-right: none;
+      min-height: 300px;
+      h3 {
+        font-size: 16px;
+        font-weight: normal;
+        color: $font-3e3e3e;
+        line-height: 36px;
+        border-bottom: 1px solid $border-color;
+        margin: 0 20px 10px;
+      }
+      ul {
+        li {
+          a {
+            display: block;
+            padding-left: 50px;
+            line-height: 40px;
+            background: url('../assets/img/icon-dot-default.png') no-repeat 20px center;
+          }
+          a:hover,
+          a.active {
+            color: #fff;
+            background: $color-2788e8 url('../assets/img/icon-dot-active.png') no-repeat 20px center;
+          }
         }
-        a:hover,
-        a.active {
-          color: #fff;
-          background: $color-2788e8 url('../assets/img/icon-dot-active.png') no-repeat 20px center;
+      }
+    }
+    .main-content {
+      min-height: 680px;
+      border: 2px solid $color-2788e8;
+      padding: 30px 35px;
+      h3 {
+        font-size: 24px;
+        text-align: center;
+        font-weight: normal;
+        color: $font-3e3e3e;
+        border-bottom: 1px solid $border-color;
+        padding: 0 0 25px;
+        margin-bottom: 30px;
+        line-height: 150%;
+      }
+      .article-detail {
+        p {
+          /*text-indent:32px;*/
+          line-height: 160%;
+          margin-bottom: 20px;
+        }
+        ul,
+        li {
+          list-style: inherit;
         }
       }
     }
   }
-  .main-content {
-    min-height: 680px;
-    border: 2px solid $color-2788e8;
-    padding: 30px 35px;
-    h3 {
-      font-size: 24px;
-      text-align: center;
-      font-weight: normal;
-      color: $font-3e3e3e;
-      border-bottom: 1px solid $border-color;
-      padding: 0 0 25px;
-      margin-bottom: 30px;
-      line-height: 150%;
-    }
-    .article-detail {
-      p {
-        /*text-indent:32px;*/
-        line-height: 160%;
-        margin-bottom: 20px;
-      }
-      ul,
-      li {
-        list-style: inherit;
-      }
-    }
-  }
-}
 </style>

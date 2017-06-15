@@ -19,9 +19,7 @@ const User = {
       state.userInfo = payload.userInfo
     }
   },
-  getters: {
-
-  }
+  getters: {}
 }
 
 export default User

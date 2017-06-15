@@ -10,9 +10,7 @@ const Site = {
       state.curPageUrl = payload.pageUrl
     }
   },
-  getters: {
-
-  }
+  getters: {}
 }
 
 export default Site

@@ -9,38 +9,38 @@
 </template>
 
 <script>
-export default {
-  data(){
-    return {
-      goHomeTimeout:null
+  export default {
+    data(){
+      return {
+        goHomeTimeout: null
+      }
+    },
+    created () {
+      this.goHomeTimeout = setTimeout(() => this.$router.push('/'), 5000)
+    },
+    beforeRouteLeave (to, from, next) {
+      clearTimeout(this.goHomeTimeout)
+      next()
     }
-  },
-  created () {
-   this.goHomeTimeout=setTimeout( ()=> this.$router.push('/'),5000)
-  },
-  beforeRouteLeave (to, from, next) {
-    clearTimeout(this.goHomeTimeout)
-    next()
   }
-}
 </script>
 
 <style>
-.page404{
-  text-align:center;
-  margin:40px 0px;
-}
+  .page404 {
+    text-align: center;
+    margin: 40px 0px;
+  }
 
-.page404 .pg404{
-  width:410px;
-  height:640px;
-  margin:0 auto;
-}
+  .page404 .pg404 {
+    width: 410px;
+    height: 640px;
+    margin: 0 auto;
+  }
 
-.page404 .pg404 p{
-  font-size:34px;
-  color:#343434;
-  line-height: 1.5;
-  margin-top:65px;
-}
+  .page404 .pg404 p {
+    font-size: 34px;
+    color: #343434;
+    line-height: 1.5;
+    margin-top: 65px;
+  }
 </style>

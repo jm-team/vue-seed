@@ -459,38 +459,41 @@ template {
 [hidden] {
   display: none;
 }
-*{
+
+* {
   box-sizing: border-box;
 }
+
 /* cys */
-body{
-  font-family: Microsoft YaHei,Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,SimSun,sans-serif;
-  color:#6e6e6e;
-  min-width:1190px;
+body {
+  font-family: Microsoft YaHei, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, SimSun, sans-serif;
+  color: #6e6e6e;
+  min-width: 1190px;
 }
+
 /*统一各个浏览器标签样式*/
-body, dl, dd, ul, ol, h1, h2, h3, h4, h5, h6, pre, form, button, input, textarea, p, option, menu, fieldset, legend{
+body, dl, dd, ul, ol, h1, h2, h3, h4, h5, h6, pre, form, button, input, textarea, p, option, menu, fieldset, legend {
   border: none 0;
   margin: 0px;
   padding: 0px;
 }
 
-ul,li{
+ul, li {
   list-style: none;
 }
 
-a{
-  color:#6e6e6e;
+a {
+  color: #6e6e6e;
   text-decoration: none;
 }
 
-.w1190{
-  width:1190px;
-  margin:0 auto;
+.w1190 {
+  width: 1190px;
+  margin: 0 auto;
 }
 
-.pr{
-  position:relative;
+.pr {
+  position: relative;
 }
 
 /* 清理浮动 */
@@ -509,7 +512,7 @@ a{
 }
 
 /*隐藏, 配合js*/
-.fn-hide{
+.fn-hide {
   display: none !important;
 }
 
@@ -523,6 +526,6 @@ a{
 }
 
 /* css变量 */
-body{
-  --fontColor:#3d3d3d;
+body {
+  --fontColor: #3d3d3d;
 }

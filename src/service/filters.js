@@ -1,5 +1,5 @@
 // 公共filters
-import siteConfig from '../../config/site.config'
+import siteConfig from "../../config/site.config";
 
 // 日期转换成 xxxx年xx月xx日 12:12 格式
 export function dateTransform(val) {

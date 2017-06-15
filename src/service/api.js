@@ -1,4 +1,4 @@
-import { Message } from 'element-ui'
+import {Message} from "element-ui";
 
 // 引入api地址配置
 var API_ADDRESS = '/webapi/v2'
@@ -52,7 +52,9 @@ Api.install = function (Vue, options) {
     // 取消页面当前请求
     apiRequsetCancel: function () {
       // 依次取消请求
-      apiCancelTokens.forEach(function (cancel, k, s) { cancel('请求被取消') })
+      apiCancelTokens.forEach(function (cancel, k, s) {
+        cancel('请求被取消')
+      })
       // 清空cancelToken
       apiCancelTokens = []
     },
@@ -96,8 +98,8 @@ Api.install = function (Vue, options) {
         username: user,
         password: pwd
       }, {
-          apiName: '用户登录'
-        })
+        apiName: '用户登录'
+      })
     },
 
     // 获取RSA公钥
