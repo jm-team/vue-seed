@@ -1,10 +1,9 @@
 {
   "presets": [
-    // 如果设置成modules为false，可能导致部分js插件引入失败，比如swiper.js
     [
-      "es2015",
+      "env",
       {
-        "modules": "commonjs"
+        "modules": false
       }
     ],
     "stage-2"
@@ -24,6 +23,10 @@
   "comments": false,
   "env": {
     "test": {
+      "presets": [
+        "env",
+        "stage-2"
+      ],
       "plugins": [
         "istanbul"
       ]

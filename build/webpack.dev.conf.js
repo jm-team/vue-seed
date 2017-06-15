@@ -33,6 +33,8 @@ module.exports = merge(baseWebpackConfig, {
       dllJsFileName: utils.getDllFileName(),
       inject: true
     }),
+    // 根据模块的路径作为Id，解决模块id为数字时不稳定的问题
+    new webpack.NamedModulesPlugin(),
     new FriendlyErrorsPlugin()
   ]
 })

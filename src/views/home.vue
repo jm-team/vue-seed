@@ -2,10 +2,10 @@
   <div class="home-wrap">
     <div class="carousel pr">
       <el-carousel arrow="never">
-        <el-carousel-item v-for="item in carouselsFilter">
+        <el-carousel-item v-for="item in carouselsFilter" :key="item.id">
           <a :href="item.url" @click="jplNul($event,item.url)">
-              <img v-lazyload="lazyLoadPic(item.adsImg)">
-            </a>
+            <img v-lazyload="lazyLoadPic(item.adsImg)">
+          </a>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -24,7 +24,8 @@
             <p>{{ intro2 | subStr(25)}}</p>
           </div>
           <div class="content-r fn-left">
-            <p>We have the advantage ofWe have the advantage ofWe have the advantage ofWe have the advantage ofWe have the advantage
+            <p>
+              We have the advantage ofWe have the advantage ofWe have the advantage ofWe have the advantage ofWe have the advantage
               ofWe have the advantage ofWe have the advantage ofWe have the advantage of </p>
           </div>
           <div class="characteristic fn-left">
@@ -69,7 +70,8 @@
         </div>
 
         <div class="expert-style-list fn-clear">
-          <router-link :to="'/expert/'+item.id" tag="div" class="style-img pr" v-for="(item, index) in styleInfoFilter" v-bind:class="{'fn-left': index === 4, 'fn-right': index === 5}">
+          <router-link :to="'/expert/'+item.id" tag="div" class="style-img pr" v-for="(item, index) in styleInfoFilter"
+                       v-bind:class="{'fn-left': index === 4, 'fn-right': index === 5}" :key="item.id">
             <!-- <img :src="item.imgUrl | imgCdn"> -->
             <img v-if="item.imgUrl" v-lazyload="lazyLoadPic(item.imgUrl)">
             <img v-else src="../assets/img/headSquare.png">
@@ -122,10 +124,10 @@
     <!--底部轮播-->
     <div class="carousel">
       <el-carousel indicator-position="none">
-        <el-carousel-item v-for="item in bottomCarouselsFilter">
+        <el-carousel-item v-for="item in bottomCarouselsFilter" :key="item.id">
           <!-- <img :src="item.adsImg | imgCdn"> -->
           <a :href="item.url" @click="jplNul($event, item.url)">
-            <img v-lazyload="lazyLoadPic(item.adsImg)" >
+            <img v-lazyload="lazyLoadPic(item.adsImg)">
           </a>
         </el-carousel-item>
       </el-carousel>
@@ -183,10 +185,8 @@
         return sb.length > 0 ? sb[0].url : "";
       }
     },
-    components: {
-
-    }
-    , created() {
+    components: {},
+    created() {
       this.Api.topCarousel().then((res) => {
         if (res.data.statusCode == 200 && res.data.rows.length > 0) {
           this.carousels = res.data.rows;
@@ -271,9 +271,11 @@
     vertical-align: middle;
   }
 
-  .el-carousel__item:nth-child(2n) {}
+  .el-carousel__item:nth-child(2n) {
+  }
 
-  .el-carousel__item:nth-child(2n+1) {}
+  .el-carousel__item:nth-child(2n+1) {
+  }
 
   .home-wrap .title {
     text-align: center;
@@ -465,7 +467,7 @@
     cursor: pointer;
   }
 
-  .expert-list .expert-detail-list+.expert-detail-list {
+  .expert-list .expert-detail-list + .expert-detail-list {
     margin-left: 186px;
   }
 
