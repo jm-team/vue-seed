@@ -25,54 +25,54 @@
   export default {
     data() {
       return {
-        artId: this.$route.params.artId || ''
-        , artDetail: {}
-        , categoryName: {}
-        , artLeftlist: {}
-      }
+        artId: this.$route.params.artId || '',
+        artDetail: {},
+        categoryName: {},
+        artLeftlist: {},
+      };
     },
     created() {
-      this.getArtDetail(this.artId)
-      this.getArtLeftbar(this.artId)
-      console.dir(this.Api.getArtDetail(this.artId))
+      this.getArtDetail(this.artId);
+      this.getArtLeftbar(this.artId);
+      console.dir(this.Api.getArtDetail(this.artId));
     },
     watch: {
-      $route(to, from) {
-        this.getArtDetail(to.params.artId)
-        this.getArtLeftbar(to.params.artId)
-      }
+      $route(to) {
+        this.getArtDetail(to.params.artId);
+        this.getArtLeftbar(to.params.artId);
+      },
     },
     methods: {
       getArtDetail(artId) {
         this.Api.getArtDetail(artId).then((rep) => {
-          if (rep.data.statusCode == 200) {
-            this.artDetail = rep.data.rows
+          if (rep.data.statusCode === 200) {
+            this.artDetail = rep.data.rows;
           } else {
             this.$message({
               message: rep.data.desc || '获取数据出错',
-              type: 'error'
-            })
+              type: 'error',
+            });
           }
-        })
+        });
       },
       getArtLeftbar(artId) {
         this.Api.getArtLeftbar(artId).then((rep) => {
-          if (rep.data.statusCode == 200) {
-            this.artLeftlist = rep.data.rows
-            this.categoryName = rep.data.rows.cmsCategory.categoryName
+          if (rep.data.statusCode === 200) {
+            this.artLeftlist = rep.data.rows;
+            this.categoryName = rep.data.rows.cmsCategory.categoryName;
           } else {
             this.$message({
               message: rep.data.desc || '获取数据出错',
-              type: 'error'
-            })
+              type: 'error',
+            });
           }
-        })
+        });
       },
       changeArtDetail(artId) {
-        this.getArtDetail(artId)
-      }
-    }
-  }
+        this.getArtDetail(artId);
+      },
+    },
+  };
 
 </script>
 

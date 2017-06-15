@@ -1,17 +1,17 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import User from "./user.js";
-import Site from "./site.js";
+import User from './user';
+import Site from './site';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 // 全局store
 const store = new Vuex.Store({
   modules: {
-    User: User,
-    Site: Site
-  }
-})
+    User,
+    Site,
+  },
+});
 
-export default store
+export default store;

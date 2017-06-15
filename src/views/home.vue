@@ -135,7 +135,7 @@
   </div>
 </template>
 <script>
-  import Vue from 'vue'
+  import Vue from 'vue';
 
   // function sliceStr(val, length) {
   //   var _newStr
@@ -163,72 +163,72 @@
         expertLists: [],
         bottomCarousels: [],
         intro: '我们｛｝<>1１２１２３〖〗【】的，12323!$$‘’？｛｝优—｛｝——势●★我｛｝｛｝www们的《》优势@#@*&^%我们的12321优势我们的',
-        intro2: '我们的优我们的优势我我们的优势我势我我们的优势我我们的优势我我们的优势我'
-      }
+        intro2: '我们的优我们的优势我我们的优势我势我我们的优势我我们的优势我我们的优势我',
+      };
     },
     computed: {
-      styleInfoFilter: function () {
+      styleInfoFilter() {
         return this.styleInfo.slice(0, 6);
       },
-      carouselsFilter: function () {
+      carouselsFilter() {
         return this.carousels.slice(0, 3);
       },
-      bottomCarouselsFilter: function () {
+      bottomCarouselsFilter() {
         return this.bottomCarousels.slice(0, 3);
       },
       styleBannerImg() {
-        var sb = this.styleBanner || [];
-        return sb.length > 0 ? sb[0].adsImg : "";
+        const sb = this.styleBanner || [];
+        return sb.length > 0 ? sb[0].adsImg : '';
       },
       styleBannerUrl() {
-        var sb = this.styleBanner || [];
-        return sb.length > 0 ? sb[0].url : "";
-      }
+        const sb = this.styleBanner || [];
+        return sb.length > 0 ? sb[0].url : '';
+      },
     },
     components: {},
     created() {
       this.Api.topCarousel().then((res) => {
-        if (res.data.statusCode == 200 && res.data.rows.length > 0) {
+        if (res.data.statusCode === 200 && res.data.rows.length > 0) {
           this.carousels = res.data.rows;
         }
-      })
+      });
       this.Api.expertStyle().then((res) => {
-        if (res.data.statusCode == 200 && res.data.rows.length > 0) {
+        if (res.data.statusCode === 200 && res.data.rows.length > 0) {
           this.styleInfo = res.data.rows;
         }
-      })
+      });
       this.Api.expertStyleBanner().then((res) => {
-        if (res.data.statusCode == 200 && res.data.rows.length > 0) {
+        if (res.data.statusCode === 200 && res.data.rows.length > 0) {
           this.styleBanner = res.data.rows;
         }
-      })
+      });
       this.Api.expertList().then((res) => {
-        if (res.data.statusCode == 200 && res.data.rows.length > 0) {
+        if (res.data.statusCode === 200 && res.data.rows.length > 0) {
           this.expertLists = res.data.rows;
         }
-      })
+      });
       this.Api.bottomCarousel().then((res) => {
-        if (res.data.statusCode == 200 && res.data.rows.length > 0) {
+        if (res.data.statusCode === 200 && res.data.rows.length > 0) {
           this.bottomCarousels = res.data.rows;
         }
-      })
+      });
     },
     methods: {
       lazyLoadPic(url) {
-        return Vue.filter('imgCdn')(url)
+        return Vue.filter('imgCdn')(url);
       },
-      //轮播防空跳转
+      // 轮播防空跳转
       jplNul($event, url) {
         if (!url) {
           $event.preventDefault();
         }
-      }
+      },
     },
     mounted() {
       // 视图挂载完成后显示公共底部
       // this.$parent.showFooter=true
-    }
-  }
+    },
+  };
 
 </script>
 <style lang="scss" rel="stylesheet/scss">

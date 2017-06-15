@@ -87,30 +87,24 @@
         loading: false,
         reportId: this.$route.params.id || null,
         reportContent: {},
-        reportExpert: {}
-      }
+        reportExpert: {},
+      };
     },
 
-    components: {}
-    , created() {
+    components: {},
+    created() {
       this.Api.detailedResearchReport().then((res) => {
-        if (res.data.statusCode == 200) {
-
+        if (res.data.statusCode === 200) {
           this.reportContent = res.data.rows;
-          this.Api.getExpertDetail().then((res) => {
-            if (res.data.statusCode == 200) {
 
-              this.reportExpert = res.data.rows;
-            }
-          }).catch((err) => {
-
-          });
+          return this.Api.getExpertDetail();
         }
-      }).catch((err) => {
-
-      })
-
-
+        return false;
+      }).then((res) => {
+        if (res.data.statusCode === 200) {
+          this.reportExpert = res.data.rows;
+        }
+      });
     },
     methods: {
       // detailedResearchReport(){
@@ -119,8 +113,8 @@
       // researchReport(){
       //     return this.axios.get(`/webapi/v2/detailedExpertInfo/${this.reportContent.expertId}`);
       // }
-    }
-  }
+    },
+  };
 
 </script>
 <style>

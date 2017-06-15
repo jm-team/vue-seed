@@ -26,35 +26,35 @@
 
 <script>
   export default {
-    data () {
+    data() {
       return {
-        siteNavs: []
-      }
+        siteNavs: [],
+      };
     },
     props: {
-      'showNav': {
+      showNav: {
         type: Boolean,
-        default: true
-      }
+        default: true,
+      },
     },
     computed: {
-      route () {
-        return this.$route.path
-      }
-    }
-    , created () {
+      route() {
+        return this.$route.path;
+      },
+    },
+    created() {
       this.Api.getFooterNavs().then((rep) => {
-        if (rep.data.statusCode == 200) {
-          this.siteNavs = rep.data.rows
+        if (rep.data.statusCode === 200) {
+          this.siteNavs = rep.data.rows;
         } else {
           this.$message({
             message: rep.data.desc || '获取数据出错',
-            type: 'error'
-          })
+            type: 'error',
+          });
         }
-      })
-    }
-  }
+      });
+    },
+  };
 </script>
 
 <style lang="scss" rel="style/scss">

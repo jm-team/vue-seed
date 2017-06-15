@@ -41,7 +41,7 @@
   </div>
 </template>
 <script>
-  import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'
+  import { mapState } from 'vuex';
 
   export default {
     data() {
@@ -51,30 +51,26 @@
         technicianLists: [],
         technicianListsAll: {},
         Items: [1, 2, 3],
-        currentPage1: 1
-      }
+        currentPage1: 1,
+      };
     },
-    components: {}
-    , created() {
+    components: {},
+    created() {
       this.Api.technicianList().then((res) => {
-        if (res.data.statusCode == 200 && res.data.rows.length > 0) {
+        if (res.data.statusCode === 200 && res.data.rows.length > 0) {
           this.technicianLists = res.data.rows;
           this.technicianListsAll = res.data;
         }
-      }).catch((err) => {
-
-      })
+      });
     },
     watch: {
-      userIsLogin: function (val) {
+      userIsLogin() {
         this.Api.technicianList().then((res) => {
-          if (res.data.statusCode == 200 && res.data.rows.length > 0) {
+          if (res.data.statusCode === 200 && res.data.rows.length > 0) {
             this.technicianLists = res.data.rows;
           }
-        }).catch((err) => {
-
         });
-      }
+      },
     },
     methods: {
       isNotEmpty(item) {
@@ -86,75 +82,67 @@
       handleCurrentChange(val) {
         this.currentPage = val;
         console.log(`当前页: ${val}`);
-        var limit = 8;
-        var offset = (val - 1) * limit;
+        const limit = 8;
+        const offset = (val - 1) * limit;
 
         this.Api.technicianList(offset, limit).then((res) => {
-          if (res.data.statusCode == 200 && res.data.rows.length > 0) {
+          if (res.data.statusCode === 200 && res.data.rows.length > 0) {
             this.technicianLists = res.data.rows;
           }
-        }).catch((err) => {
-
         });
-
       },
       loginWarn() {
         // this.$message({
         //   message: '请先登录！',
         //   type: 'warning'
         // })
-        this.$root.$emit('showLoginDialog')
-
+        this.$root.$emit('showLoginDialog');
       },
       handleCollection(type, info, index) {
         if (!this.userIsLogin) {
           this.loginWarn();
         } else if (this.userIsLogin) {
-          var curItem = Object.assign({}, info)
-          let vm = this;
-          if (type == 1) {
-
+          const curItem = Object.assign({}, info);
+          const vm = this;
+          if (type === 1) {
             vm.axios.get(`/webapi/v2/favorite/1/${info.id}`, {
-                params: {
-                  t: Date.now()
-                }
-              }
+              params: {
+                t: Date.now(),
+              },
+            },
             ).then((res) => {
-              if (res.data.statusCode == 200) {
-                curItem.isFavorite = 1
+              if (res.data.statusCode === 200) {
+                curItem.isFavorite = 1;
                 vm.$set(this.technicianLists, index, curItem);
               }
-
-            })
+            });
           } else {
             vm.axios.get(`/webapi/v2/notFavorite/1/${info.id}`, {
               params: {
-                t: Date.now()
-              }
+                t: Date.now(),
+              },
             }).then((res) => {
-              if (res.data.statusCode == 200) {
-                curItem.isFavorite = 0
+              if (res.data.statusCode === 200) {
+                curItem.isFavorite = 0;
                 vm.$set(this.technicianLists, index, curItem);
               }
-
-            })
+            });
           }
-
         }
       },
       jpExpertDetail(id) {
-        this.$router.push({name: 'expertDetail', params: {id: id}});
-      }
+        this.$router.push({ name: 'expertDetail', params: { id } });
+      },
     },
     computed: {
       ...mapState({
-        userIsLogin: state => state.User.isLogin
-        , userInfo: state => state.User.userInfo
-        , loginToUrl: state => state.User.loginToUrl
-        , curPageUrl: state => state.Site.curPageUrl
-      })
-    }
-  }
+        userIsLogin: state => state.User.isLogin,
+        userInfo: state => state.User.userInfo,
+        loginToUrl: state => state.User.loginToUrl,
+        curPageUrl: state => state.Site.curPageUrl,
+      }),
+    },
+  };
 
 </script>
 <style>

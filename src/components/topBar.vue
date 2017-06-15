@@ -3,25 +3,24 @@
     <div class="top-nav">
       <div class="layout-wrap">
         <div class="user-nav">
-          <p class="reg-login" v-if="!userIsLogin">
+          <div class="reg-login" v-if="!userIsLogin">
             <a :href="CENTER_ADDRESS+'/user/toRegister'" target="_blank">用户注册 / Free Registration</a>
             <a href="javascript:;" @click="loginDialogShow = true">登录 / Sign in</a>
-          </p>
-          <p class="user-info" v-else>
+          </div>
+          <div class="user-info" v-else>
             <span class="headpic"><img :src="userInfo.headImg | imgCdn" errorimg="../assets/img/headGray.png"
                                        onerror="this.src = this.getAttribute('errorimg')"></span>
             <ul>
               <li>
-          <p>{{ userInfo.nickName || userInfo.userName || '&nbsp;&nbsp;' }}</p>
-          <ul>
-            <li><a :href="CENTER_ADDRESS+'/jttoverview/init'" target="_blank">个人中心</a></li>
-            <li><a :href="USERCENTER_ADDRESS+'/logout?returnUrl=' + curPageUrl" @click="setUserIsLoginCookie">退出</a>
-            </li>
-          </ul>
-          </li>
-          </ul>
-          </p>
-          <!--<a :href="'http://uc3.dev.com/logout?returnUrl=' + curPageUrl">退出 / Logout</a>-->
+                <p>{{ userInfo.nickName || userInfo.userName || '&nbsp;&nbsp;' }}</p>
+                <ul>
+                  <li><a :href="CENTER_ADDRESS+'/jttoverview/init'" target="_blank">个人中心</a></li>
+                  <li><a :href="USERCENTER_ADDRESS+'/logout?returnUrl=' + curPageUrl" @click="setUserIsLoginCookie">退出</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -78,54 +77,54 @@
 </template>
 
 <script>
-  import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'
-  import siteConfig from 'config/site.config'
-  import RSA from 'assets/js/security'
+  import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+  import siteConfig from 'config/site.config';
+  import RSA from 'assets/js/security';
 
   export default {
     data() {
       // 登录表单校验函数
-      var verifyUsername = (rule, value, callback) => {
+      const verifyUsername = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入用户名'));
         } else {
           // 必须调用callback，否则没法完成验证
-          callback()
+          callback();
         }
-      }
-      var verifyPassword = (rule, value, callback) => {
+      };
+      const verifyPassword = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入密码'));
         } else {
-          callback()
+          callback();
         }
-      }
+      };
       return {
-        loginDialogShow: false
-        , homeUrl: window.location.origin
-        , CENTER_ADDRESS: siteConfig.address.CENTER_ADDRESS
-        , USERCENTER_ADDRESS: siteConfig.address.USERCENTER_ADDRESS
+        loginDialogShow: false,
+        homeUrl: window.location.origin,
+        CENTER_ADDRESS: siteConfig.address.CENTER_ADDRESS,
+        USERCENTER_ADDRESS: siteConfig.address.USERCENTER_ADDRESS,
         // 登录表单数据
-        , loginForm: {
-          username: ''
-          , password: ''
-        }
+        loginForm: {
+          username: '',
+          password: '',
+        },
         // 登录表单校验规则
-        , loginFormVerifyRule: {
+        loginFormVerifyRule: {
           username: [
-            {validator: verifyUsername, trigger: 'blur', required: true}
+            { validator: verifyUsername, trigger: 'blur', required: true },
           ],
           password: [
-            {validator: verifyPassword, trigger: 'blur', required: true}
-          ]
-        }
-      }
+            { validator: verifyPassword, trigger: 'blur', required: true },
+          ],
+        },
+      };
     },
     methods: {
       login() {
         this.$refs.loginForm.validate((valid) => {
           if (valid) {
-            let data = this.loginForm
+            const data = this.loginForm;
             /* 通过接口获取RSA公钥并对密码进行加密 */
             // this.Api.getRSA().then((rep) => {
             //     let data=rep.data.data
@@ -139,8 +138,8 @@
             // this.Api.doLogin(data.username, data.password).then((rep) => {
             //     let data = rep.data.data
             //     if (data.code == 0) {
-            this.closeLoginDialog()
-            this.$parent.$emit('userLogined')
+            this.closeLoginDialog();
+            this.$parent.$emit('userLogined');
             //     } else {
             //         // 显示错误信息
             //         this.$message({
@@ -152,58 +151,58 @@
           } else {
             return false;
           }
-        })
+        });
       },
       closeLoginDialog() {
-        this.loginDialogShow = false
-        this.$refs.loginForm.resetFields()
+        this.loginDialogShow = false;
+        this.$refs.loginForm.resetFields();
       },
       openLoginDialogCallback() {
       },
       setUserIsLoginCookie() {
-        this.Util.cookie.setCookie('userIsLogin', false)
+        this.Util.cookie.setCookie('userIsLogin', false);
       },
       ...mapMutations([
-        'changeLoginState'
-        , 'updateUserInfo'
-      ])
+        'changeLoginState',
+        'updateUserInfo',
+      ]),
     },
     computed: {
       ...mapState({
-        userIsLogin: state => state.User.isLogin
-        , userInfo: state => state.User.userInfo
-        , loginToUrl: state => state.User.loginToUrl
-        , curPageUrl: state => state.Site.curPageUrl
-      })
-    }
-    , created() {
-      let _app = this.$parent
+        userIsLogin: state => state.User.isLogin,
+        userInfo: state => state.User.userInfo,
+        loginToUrl: state => state.User.loginToUrl,
+        curPageUrl: state => state.Site.curPageUrl,
+      }),
+    },
+    created() {
+      const _app = this.$parent;
       // 检测到未登录时处理
       _app.$on('userNotLogin', () => {
-        this.Util.cookie.setCookie('userIsLogin', false)
-        this.changeLoginState({loginState: false})
+        this.Util.cookie.setCookie('userIsLogin', false);
+        this.changeLoginState({ loginState: false });
         this.updateUserInfo({
-          userInfo: {}
-        })
-      })
+          userInfo: {},
+        });
+      });
 
       // 检测到已登录里处理
       _app.$on('userLogined', () => {
-        this.Util.cookie.setCookie('userIsLogin', true)
-        this.changeLoginState({loginState: true})
+        this.Util.cookie.setCookie('userIsLogin', true);
+        this.changeLoginState({ loginState: true });
         this.Api.getUserInfo().then((data) => {
           // 更新用户信息
           this.updateUserInfo({
-            userInfo: data.data.rows
-          })
-        })
-      })
+            userInfo: data.data.rows,
+          });
+        });
+      });
 
       this.$root.$on('showLoginDialog', () => {
-        this.loginDialogShow = true
-      })
-    }
-  }
+        this.loginDialogShow = true;
+      });
+    },
+  };
 
 </script>
 

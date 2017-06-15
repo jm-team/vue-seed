@@ -10,19 +10,19 @@
 
 <script>
   export default {
-    data(){
+    data() {
       return {
-        goHomeTimeout: null
-      }
+        goHomeTimeout: null,
+      };
     },
-    created () {
-      this.goHomeTimeout = setTimeout(() => this.$router.push('/'), 5000)
+    created() {
+      this.goHomeTimeout = setTimeout(() => this.$router.push('/'), 5000);
     },
-    beforeRouteLeave (to, from, next) {
-      clearTimeout(this.goHomeTimeout)
-      next()
-    }
-  }
+    beforeRouteLeave(to, from, next) {
+      clearTimeout(this.goHomeTimeout);
+      next();
+    },
+  };
 </script>
 
 <style>

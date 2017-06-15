@@ -79,7 +79,6 @@
           <div class="dialog-btn-item">
             <el-button type="primary" class="btn-iknow" @click="explainDialogVisible = false">知道了</el-button>
           </div>
-          </span>
         </el-dialog>
 
       </div>
@@ -88,133 +87,129 @@
   </div>
 </template>
 <script>
-  import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'
+  import { mapState } from 'vuex';
 
   export default {
     data() {
       return {
-        loading: false
-        , explainDialogVisible: false
-        , expertInfo: {}
-        // 判断是否提交中
-        , formSubmitting: false
-        // 发布需求表单校验规则
-        , demandFormVerifyRule: {
+        loading: false,
+        explainDialogVisible: false,
+        expertInfo: {},
+      // 判断是否提交中
+        formSubmitting: false,
+      // 发布需求表单校验规则
+        demandFormVerifyRule: {
           companyIntroduces: [
-            {message: '请输入调研公司信息', trigger: 'blur', required: true}
+            { message: '请输入调研公司信息', trigger: 'blur', required: true },
           ],
           content: [
-            {message: '请输入调研描述', trigger: 'blur', required: true}
+            { message: '请输入调研描述', trigger: 'blur', required: true },
           ],
           intentionUserName: [
-            {message: '请输入发布者名称', trigger: 'blur', required: true}
+            { message: '请输入发布者名称', trigger: 'blur', required: true },
           ],
           intentionUserJob: [
-            {message: '请输入发布者职务', trigger: 'blur', required: true}
+            { message: '请输入发布者职务', trigger: 'blur', required: true },
           ],
           intentionUserCompany: [
-            {message: '请输入发布者公司', trigger: 'blur', required: true}
+            { message: '请输入发布者公司', trigger: 'blur', required: true },
           ],
           intentionUserEmail: [
-            {message: '请输入电子邮箱', trigger: 'blur', required: true}
+            { message: '请输入电子邮箱', trigger: 'blur', required: true },
           ],
           intentionUserTel: [
-            {message: '请输入联系方式', trigger: 'blur', required: true}
-          ]
-        }
-      }
-    }
-    , components: {},
+            { message: '请输入联系方式', trigger: 'blur', required: true },
+          ],
+        },
+      };
+    },
+    components: {},
     watch: {
-      $route(to, from) {
-        this.demandForm.objectId = to.query.expertId || null
-      }
+      $route(to) {
+        this.demandForm.objectId = to.query.expertId || null;
+      },
     },
     computed: {
       ...mapState({
-        userIsLogin: state => state.User.isLogin
-        , userInfo: state => state.User.userInfo
-        , loginToUrl: state => state.User.loginToUrl
-        , curPageUrl: state => state.Site.curPageUrl
+        userIsLogin: state => state.User.isLogin,
+        userInfo: state => state.User.userInfo,
+        loginToUrl: state => state.User.loginToUrl,
+        curPageUrl: state => state.Site.curPageUrl,
       }),
       // 发布需求表单数据
       demandForm() {
         return {
-          companyIntroduces: ''
-          , content: ''
-          , intentionUserName: this.userInfo.realName || ''
-          , intentionUserJob: this.userInfo.job || ''
-          , intentionUserCompany: this.userInfo.companyName || ''
-          , intentionUserEmail: this.userInfo.email || ''
-          , intentionUserTel: this.userInfo.userName || ''
-          , objectId: this.$route.query.expertId || null
-        }
-      }
-    }
-    , methods: {
+          companyIntroduces: '',
+          content: '',
+          intentionUserName: this.userInfo.realName || '',
+          intentionUserJob: this.userInfo.job || '',
+          intentionUserCompany: this.userInfo.companyName || '',
+          intentionUserEmail: this.userInfo.email || '',
+          intentionUserTel: this.userInfo.userName || '',
+          objectId: this.$route.query.expertId || null,
+        };
+      },
+    },
+    methods: {
       demandSubmit() {
         if (!this.formSubmitting) {
-          this.formSubmitting = true
+          this.formSubmitting = true;
           this.$refs.demandForm.validate((valid) => {
-
             if (valid) {
-              let data = this.demandForm
-              this.Api.researchBill(data).then((rep) => {
-                let data = rep.data
-                if (data.statusCode == 200) {
-                  this.closeDemandDialog()
+              const formData = this.demandForm;
+              this.Api.researchBill(formData).then((rep) => {
+                const data = rep.data;
+                if (data.statusCode === 200) {
+                  this.closeDemandDialog();
                   this.$alert('调研单发布成功', '提示', {
                     type: 'success',
-                    confirmButtonText: '确定'
-                  })
-                  this.changeSubmitStatus()
+                    confirmButtonText: '确定',
+                  });
+                  this.changeSubmitStatus();
                 } else {
                   // 显示错误信息
                   this.$message({
                     message: data.desc,
-                    type: 'error'
-                  })
-                  this.changeSubmitStatus()
+                    type: 'error',
+                  });
+                  this.changeSubmitStatus();
                 }
-              })
+              });
             } else {
-              this.formSubmitting = false
-              return false
+              this.formSubmitting = false;
             }
-
-          })
-
+          });
         }
       },
       closeDemandDialog() {
-        this.explainDialogVisible = false
-        this.$refs.demandForm.resetFields()
+        this.explainDialogVisible = false;
+        this.$refs.demandForm.resetFields();
       },
       // 改变表单提交状态
       changeSubmitStatus(time) {
         setTimeout(() => {
-          this.formSubmitting = false
-        }, time || 3000)
-      }
-    }
-    , created() {
+          this.formSubmitting = false;
+        }, time || 3000);
+      },
+    },
+    created() {
       // 如果带有专家id,则获取专家简介信息
       if (this.demandForm.objectId) {
         // 获取专家信息
         this.Api.getExpertDetail(this.demandForm.objectId).then((rep) => {
-          if (rep.data.statusCode == 200) {
-            this.expertInfo = rep.data.rows
+          if (rep.data.statusCode === 200) {
+            this.expertInfo = rep.data.rows;
           } else {
             // 显示错误信息
             this.$message({
               message: rep.data.desc,
-              type: 'error'
-            })
+              type: 'error',
+            });
           }
-        })
+        });
       }
-    }
-  }
+    },
+  };
 
 </script>
 <style lang="scss" rel="style/scss">

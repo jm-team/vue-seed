@@ -1,48 +1,48 @@
-import Vue from "vue";
-import Router from "vue-router";
+import Vue from 'vue';
+import Router from 'vue-router';
 
 // 引入路由视图，懒加载处理
-const home = r => require.ensure([], () => r(require('views/home')), 'home')
-const expert = r => require.ensure([], () => r(require('views/expert')), 'expert')
-const expertDetail = r => require.ensure([], () => r(require('views/expertDetail')), 'expertDetail')
-const companyResearch = r => require.ensure([], () => r(require('views/companyResearch')), 'companyResearch')
-const releaseResearch = r => require.ensure([], () => r(require('views/releaseResearch')), 'releaseResearch')
-const service = r => require.ensure([], () => r(require('views/service')), 'service')
-const page404 = r => require.ensure([], () => r(require('views/page404')), 'page404')
-Vue.use(Router)
+const home = () => import('views/home' /* webpackChunkName = "home" */);
+const expert = () => import('views/expert' /* webpackChunkName = "expert" */);
+const expertDetail = () => import('views/expertDetail' /* webpackChunkName = "expertDetail" */);
+const companyResearch = () => import('views/companyResearch' /* webpackChunkName = "companyResearch" */);
+const releaseResearch = () => import('views/releaseResearch' /* webpackChunkName = "releaseResearch" */);
+const service = () => import('views/service' /* webpackChunkName = "service" */);
+const page404 = () => import('views/page404' /* webpackChunkName = "page404" */);
 
-var myrouter = new Router({
+Vue.use(Router);
+
+const myrouter = new Router({
   mode: 'history',
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition
-    } else {
-      return {x: 0, y: 0}
+      return savedPosition;
     }
+    return { x: 0, y: 0 };
   },
   routes: [
     // 首页
     {
       path: '/',
       name: 'home',
-      component: home
+      component: home,
     },
     {
       path: '/home',
-      redirect: '/'
+      redirect: '/',
     },
     // 专家列表页
     {
       path: '/expert',
       query: {
         page: 1,            // 页数
-        business: ''        // 行业
+        business: '',        // 行业
       },
       name: 'expert',
       component: expert,
       meta: {
-        title: '专家列表页'
-      }
+        title: '专家列表页',
+      },
     },
 
     // 专家详情页
@@ -51,37 +51,37 @@ var myrouter = new Router({
       name: 'expertDetail',
       component: expertDetail,
       meta: {
-        title: '专家详情页'
-      }
+        title: '专家详情页',
+      },
     },
 
     // 企业研报页
     {
       path: '/companyResearch/:id',
       name: 'companyResearch',
-      component: companyResearch
+      component: companyResearch,
     },
 
     // 发布调研单页
     {
       path: '/releaseResearch',
       query: {
-        expertId: ''
+        expertId: '',
       },
       name: 'releaseResearch',
-      component: releaseResearch
+      component: releaseResearch,
     },
     // 常见问题类页面
     {
       path: '/service/:artId',
       name: 'service',
-      component: service
+      component: service,
     },
     {
       path: '*',
-      component: page404
-    }
-  ]
-})
+      component: page404,
+    },
+  ],
+});
 
-export default myrouter
+export default myrouter;

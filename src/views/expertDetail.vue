@@ -262,266 +262,256 @@
   </div>
 </template>
 <script>
-  import {mapState, mapGetters, mapMutations, mapActions} from 'vuex'
-  import Vue from 'vue'
+  import { mapState } from 'vuex';
+  import Vue from 'vue';
 
   export default {
     data() {
       return {
-        loading: false
-        , contactDialogVisible: false
-        , interviewDialogVisible: false
-        , expertId: this.$route.params.id || ''
-        , expertInfo: {}
-        , expertAttribute: ''
-        , researchList: []
-        , contactFormSubmitting: false
-        , interviewFormSubmitting: false
-        // 发布联系单数据
-        // , contactForm: {
-        //   content: ''
-        //   , intentionUserName: ''
-        //   , intentionUserCompany: ''
-        //   , intentionUserJob: ''
-        //   , intentionUserEmail: ''
-        //   , intentionUserTel: ''
-        //   , objectId: this.$route.params.id || ''
-        // }
-        // 发布联系单校验规则
-        , contactFormVerifyRule: {
+        loading: false,
+        contactDialogVisible: false,
+        interviewDialogVisible: false,
+        expertId: this.$route.params.id || '',
+        expertInfo: {},
+        expertAttribute: '',
+        researchList: [],
+        contactFormSubmitting: false,
+        interviewFormSubmitting: false,
+      // 发布联系单数据
+      // , contactForm: {
+      //   content: ''
+      //   , intentionUserName: ''
+      //   , intentionUserCompany: ''
+      //   , intentionUserJob: ''
+      //   , intentionUserEmail: ''
+      //   , intentionUserTel: ''
+      //   , objectId: this.$route.params.id || ''
+      // }
+      // 发布联系单校验规则
+        contactFormVerifyRule: {
           content: [
-            {message: '请输入联系内容', trigger: 'blur', required: true}
+            { message: '请输入联系内容', trigger: 'blur', required: true },
           ],
           intentionUserName: [
-            {message: '请输入联系人姓名', trigger: 'blur', required: true}
+            { message: '请输入联系人姓名', trigger: 'blur', required: true },
           ],
           intentionUserJob: [
-            {message: '请输入联系人职务', trigger: 'blur', required: true}
+            { message: '请输入联系人职务', trigger: 'blur', required: true },
           ],
           intentionUserCompany: [
-            {message: '请输入联系人公司', trigger: 'blur', required: true}
+            { message: '请输入联系人公司', trigger: 'blur', required: true },
           ],
           intentionUserEmail: [
-            {message: '请输入电子邮箱', trigger: 'blur', required: true}
+            { message: '请输入电子邮箱', trigger: 'blur', required: true },
           ],
           intentionUserTel: [
-            {message: '请输入联系电话', trigger: 'blur', required: true}
-          ]
-        }
+            { message: '请输入联系电话', trigger: 'blur', required: true },
+          ],
+        },
 
-        // 发布采访数据
-        // , interviewForm: {
-        //   requirementContent: ''
-        //   , intentionUserName: ''
-        //   , intentionUserCompany: ''
-        //   , intentionUserPosition: ''
-        //   , intentionUserEmail: ''
-        //   , intentionUserTel: ''
-        //   , expertNo: this.$route.params.id || null
-        // }
-        // 发布采访校验规则
-        , interviewFormVerifyRule: {
+      // 发布采访数据
+      // , interviewForm: {
+      //   requirementContent: ''
+      //   , intentionUserName: ''
+      //   , intentionUserCompany: ''
+      //   , intentionUserPosition: ''
+      //   , intentionUserEmail: ''
+      //   , intentionUserTel: ''
+      //   , expertNo: this.$route.params.id || null
+      // }
+      // 发布采访校验规则
+        interviewFormVerifyRule: {
           requirementContent: [
-            {message: '请输入采访内容', trigger: 'blur', required: true}
+            { message: '请输入采访内容', trigger: 'blur', required: true },
           ],
           intentionUserName: [
-            {message: '请输入发布者姓名', trigger: 'blur', required: true}
+            { message: '请输入发布者姓名', trigger: 'blur', required: true },
           ],
           intentionUserPosition: [
-            {message: '请输入发布者职务', trigger: 'blur', required: true}
+            { message: '请输入发布者职务', trigger: 'blur', required: true },
           ],
           intentionUserCompany: [
-            {message: '请输入发布者公司', trigger: 'blur', required: true}
+            { message: '请输入发布者公司', trigger: 'blur', required: true },
           ],
           intentionUserEmail: [
-            {message: '请输入电子邮箱', trigger: 'blur', required: true}
+            { message: '请输入电子邮箱', trigger: 'blur', required: true },
           ],
           intentionUserTel: [
-            {message: '请输入联系电话', trigger: 'blur', required: true}
-          ]
-        }
-      }
+            { message: '请输入联系电话', trigger: 'blur', required: true },
+          ],
+        },
+      };
     },
     created() {
-      this.getExpertInfo()
+      this.getExpertInfo();
       // 获取专家技能
       this.Api.getExpertAttribute(this.expertId).then((rep) => {
-        if (rep.data.statusCode == 200) {
-          this.expertAttribute = rep.data.desc
+        if (rep.data.statusCode === 200) {
+          this.expertAttribute = rep.data.desc;
         }
-      })
+      });
       // 获取研报信息
       this.Api.getExpertResearch(this.expertId).then((rep) => {
-        if (rep.data.statusCode == 200) {
-          this.researchList = rep.data.rows
+        if (rep.data.statusCode === 200) {
+          this.researchList = rep.data.rows;
         }
-      })
+      });
     },
     watch: {
-      userIsLogin: function (val) {
-        this.getExpertInfo()
-      }
+      userIsLogin() {
+        this.getExpertInfo();
+      },
     },
     methods: {
       lazyLoadPic(url) {
-        return Vue.filter('imgCdn')(url)
+        return Vue.filter('imgCdn')(url);
       },
       openDialog(formName) {
         if (!this.userIsLogin) {
-          this.$root.$emit('showLoginDialog')
-          return
+          this.$root.$emit('showLoginDialog');
+          return;
         }
-        this[`${formName}DialogVisible`] = true
+        this[`${formName}DialogVisible`] = true;
       },
       interviewSubmit() {
         if (!this.interviewFormSubmitting) {
-          this.interviewFormSubmitting = true
+          this.interviewFormSubmitting = true;
           this.$refs.interviewForm.validate((valid) => {
-
             if (valid) {
-              let data = this.interviewForm
-              this.Api.interviewBill(data).then((rep) => {
-                let data = rep.data
-                if (data.statusCode == 200) {
-                  this.closeFormDialog('interview')
+              const formData = this.interviewForm;
+              this.Api.interviewBill(formData).then((rep) => {
+                const data = rep.data;
+                if (data.statusCode === 200) {
+                  this.closeFormDialog('interview');
                   this.$alert('联系单发送成功', '提示', {
                     type: 'success',
-                    confirmButtonText: '确定'
-                  })
-                  this.changeSubmitStatus('interviewForm')
+                    confirmButtonText: '确定',
+                  });
+                  this.changeSubmitStatus('interviewForm');
                 } else {
                   // 显示错误信息
                   this.$message({
                     message: data.desc || '提交采访单出错',
-                    type: 'error'
-                  })
-                  this.changeSubmitStatus('interviewForm')
+                    type: 'error',
+                  });
+                  this.changeSubmitStatus('interviewForm');
                 }
-              })
+              });
             } else {
-              this.interviewFormSubmitting = false
-              return false
+              this.interviewFormSubmitting = false;
             }
-
-          })
-
+          });
         }
       },
       // 提交联系单
       contactSubmit() {
         if (!this.contactFormSubmitting) {
-          this.contactFormSubmitting = true
+          this.contactFormSubmitting = true;
           this.$refs.contactForm.validate((valid) => {
-
             if (valid) {
-              let data = this.contactForm
-              this.Api.contactBill(data).then((rep) => {
-                let data = rep.data
-                if (data.statusCode == 200) {
-                  this.closeFormDialog('contact')
+              const formData = this.contactForm;
+              this.Api.contactBill(formData).then((rep) => {
+                const data = rep.data;
+                if (data.statusCode === 200) {
+                  this.closeFormDialog('contact');
                   this.$alert('联系单发送成功', '提示', {
                     type: 'success',
-                    confirmButtonText: '确定'
-                  })
-                  this.changeSubmitStatus('contactForm')
+                    confirmButtonText: '确定',
+                  });
+                  this.changeSubmitStatus('contactForm');
                 } else {
                   // 显示错误信息
                   this.$message({
                     message: data.desc || '提交联系单出错',
-                    type: 'error'
-                  })
-                  this.changeSubmitStatus('contactForm')
+                    type: 'error',
+                  });
+                  this.changeSubmitStatus('contactForm');
                 }
-              })
+              });
             } else {
-              this.contactFormSubmitting = false
-              return false
+              this.contactFormSubmitting = false;
             }
-
-          })
-
+          });
         }
       },
       // 改变表单提交状态
       changeSubmitStatus(formName, time) {
         setTimeout(() => {
-          this[`${formName}Submitting`] = false
-        }, time || 3000)
+          this[`${formName}Submitting`] = false;
+        }, time || 3000);
       },
       // 关闭表单弹窗
       closeFormDialog(formName) {
-        this[`${formName}DialogVisible`] = false
-        this.$refs[`${formName}Form`].resetFields()
+        this[`${formName}DialogVisible`] = false;
+        this.$refs[`${formName}Form`].resetFields();
       },
       getExpertInfo() {
         // 获取专家信息
         this.Api.getExpertDetail(this.expertId).then((rep) => {
-          if (rep.data.statusCode == 200) {
-            this.expertInfo = rep.data.rows
+          if (rep.data.statusCode === 200) {
+            this.expertInfo = rep.data.rows;
           }
-        })
+        });
       },
       // 专家收藏
       expertFavo(isFavo) {
         // 判断是否登录
         if (this.userIsLogin) {
-
-          if (isFavo == 0) {
+          if (isFavo === 0) {
             // 如果没收藏，则添加收藏
             this.Api.expertFavo(this.expertId, 1).then((rep) => {
-              if (rep.data.statusCode == 200) {
-                this.$set(this.expertInfo, 'isFavorite', 1)
+              if (rep.data.statusCode === 200) {
+                this.$set(this.expertInfo, 'isFavorite', 1);
               }
-            })
+            });
           } else {
             // 如果已收藏，则取消收藏
             this.Api.expertFavo(this.expertId, 0).then((rep) => {
-              if (rep.data.statusCode == 200) {
-                this.$set(this.expertInfo, 'isFavorite', 0)
+              if (rep.data.statusCode === 200) {
+                this.$set(this.expertInfo, 'isFavorite', 0);
               }
-            })
+            });
           }
-
         } else {
           // this.$message({
           //   message: '请先登录！',
           //   type: 'warning'
           // })
-          this.$root.$emit('showLoginDialog')
+          this.$root.$emit('showLoginDialog');
         }
-      }
+      },
     },
     computed: {
       ...mapState({
         userIsLogin: state => state.User.isLogin,
-        userInfo: state => state.User.userInfo
+        userInfo: state => state.User.userInfo,
       }),
       // 发布采访单数据
       interviewForm() {
         return {
-          requirementContent: ''
-          , intentionUserName: this.userInfo.realName || ''
-          , intentionUserPosition: this.userInfo.job || ''
-          , intentionUserCompany: this.userInfo.companyName || ''
-          , intentionUserEmail: this.userInfo.email || ''
-          , intentionUserTel: this.userInfo.userName || ''
-          , expertNo: this.$route.params.id || null
-        }
+          requirementContent: '',
+          intentionUserName: this.userInfo.realName || '',
+          intentionUserPosition: this.userInfo.job || '',
+          intentionUserCompany: this.userInfo.companyName || '',
+          intentionUserEmail: this.userInfo.email || '',
+          intentionUserTel: this.userInfo.userName || '',
+          expertNo: this.$route.params.id || null,
+        };
       },
       // 发布联系表单数据
       contactForm() {
         return {
-          content: ''
-          , intentionUserName: this.userInfo.realName || ''
-          , intentionUserJob: this.userInfo.job || ''
-          , intentionUserCompany: this.userInfo.companyName || ''
-          , intentionUserEmail: this.userInfo.email || ''
-          , intentionUserTel: this.userInfo.userName || ''
-          , objectId: this.$route.params.id || null
-        }
-      }
-    }
-  }
+          content: '',
+          intentionUserName: this.userInfo.realName || '',
+          intentionUserJob: this.userInfo.job || '',
+          intentionUserCompany: this.userInfo.companyName || '',
+          intentionUserEmail: this.userInfo.email || '',
+          intentionUserTel: this.userInfo.userName || '',
+          objectId: this.$route.params.id || null,
+        };
+      },
+    },
+  };
 
 </script>
 <style lang="scss" rel="style/scss">
