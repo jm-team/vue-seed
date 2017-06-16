@@ -1,4 +1,9 @@
+import Vue from 'vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import { Message } from 'element-ui';
+
+Vue.use(VueAxios, axios);
 
 // 引入api地址配置
 const API_ADDRESS = '/webapi/v2';

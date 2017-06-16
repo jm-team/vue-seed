@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+Vue.use(Router);
+
 // 引入路由视图，懒加载处理
 const home = () => import(/* webpackChunkName: "home" */ 'views/home');
 const expert = () => import(/* webpackChunkName: "expert" */ 'views/expert');
@@ -10,9 +12,7 @@ const releaseResearch = () => import(/* webpackChunkName: "releaseResearch" */ '
 const service = () => import(/* webpackChunkName: "service" */ 'views/service');
 const page404 = () => import(/* webpackChunkName: "page404" */ 'views/page404');
 
-Vue.use(Router);
-
-const myrouter = new Router({
+const router = new Router({
   mode: 'history',
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -84,4 +84,4 @@ const myrouter = new Router({
   ],
 });
 
-export default myrouter;
+export default router;

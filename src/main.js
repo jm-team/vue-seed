@@ -1,28 +1,18 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
-import VueRouter from 'vue-router';
-// 兼容ie9
-import 'babel-polyfill';
-import axios from 'axios';
-import VueAxios from 'vue-axios';
+import 'es6-promise/auto'; // 兼容ie9
 import 'assets/css/common.css';
-// 引入ElementUI
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 
 import App from './App';
-import router from './router';
-// 引入公共js
-import Util from './service/util';
-// 引入公共api
 import Api from './service/api';
-// 懒加载
-import lazyLoad from './service/lazyload';
-// store
+import Util from './service/util';
 import store from './store';
-// 引入filters并注册到vue
-import * as filters from './service/filters';
+import router from './router';
+import lazyLoad from './assets/js/lazyload';
+import * as filters from './filter';
 
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key]);
@@ -31,24 +21,22 @@ Object.keys(filters).forEach((key) => {
 // 将过滤器挂载到vue原型上，方便在实例中使用
 Vue.prototype.Filters = filters;
 
-Vue.use(ElementUI);
-Vue.use(lazyLoad);
-Vue.use(VueRouter);
-Vue.use(VueAxios, axios);
 Vue.use(Api);
 Vue.use(Util);
+Vue.use(lazyLoad);
+Vue.use(ElementUI);
 
 /* eslint-disable no-new */
 const _app = new Vue({
   el: '#app',
-  store,
-  template: '<App/>',
   data() {
     return {
       showFooter: false,
     };
   },
   router,
+  store,
+  template: '<App/>',
   components: { App },
 });
 
