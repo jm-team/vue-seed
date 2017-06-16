@@ -1,6 +1,6 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var site = require('./site.config')
+var site = require('./address.config')
 
 module.exports = {
   // dll文件存放位置

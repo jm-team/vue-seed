@@ -31,4 +31,4 @@ npm run build
 * api错误统一处理及友好提示
 * api请求数据mock模拟，部分功能不能用，可以查看测试环境：http://www.jtt.com
 * ie9兼容es6语法处理
-* 开发配置统一提取到config/site.config.js，统一设置
+* 开发配置统一提取到config/address.config.js，统一设置

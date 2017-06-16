@@ -78,7 +78,7 @@
 
 <script>
   import { mapState, mapMutations } from 'vuex';
-  import siteConfig from 'config/site.config';
+  import siteConfig from 'config/address.config';
 //  import RSA from 'assets/js/security';
 
   export default {

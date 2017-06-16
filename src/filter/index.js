@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import siteConfig from '../../config/site.config'; // 公共filters
+import siteConfig from '../../config/address.config'; // 公共filters
 
 function addZero(target) {
   if (target < 10) {
