@@ -21,7 +21,7 @@
       ]
     ]
   ],
-  "comments": false,
+  "comments": true, // import() chunkname 通过注释添加，所以这里不能取消注释
   "env": {
     "test": {
       "presets": [

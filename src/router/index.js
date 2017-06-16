@@ -2,13 +2,13 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 // 引入路由视图，懒加载处理
-const home = () => import('views/home' /* webpackChunkName = "home" */);
-const expert = () => import('views/expert' /* webpackChunkName = "expert" */);
-const expertDetail = () => import('views/expertDetail' /* webpackChunkName = "expertDetail" */);
-const companyResearch = () => import('views/companyResearch' /* webpackChunkName = "companyResearch" */);
-const releaseResearch = () => import('views/releaseResearch' /* webpackChunkName = "releaseResearch" */);
-const service = () => import('views/service' /* webpackChunkName = "service" */);
-const page404 = () => import('views/page404' /* webpackChunkName = "page404" */);
+const home = () => import(/* webpackChunkName: "home" */ 'views/home');
+const expert = () => import(/* webpackChunkName: "expert" */ 'views/expert');
+const expertDetail = () => import(/* webpackChunkName: "expertDetail" */ 'views/expertDetail');
+const companyResearch = () => import(/* webpackChunkName: "companyResearch" */ 'views/companyResearch');
+const releaseResearch = () => import(/* webpackChunkName: "releaseResearch" */ 'views/releaseResearch');
+const service = () => import(/* webpackChunkName: "service" */ 'views/service');
+const page404 = () => import(/* webpackChunkName: "page404" */ 'views/page404');
 
 Vue.use(Router);
 

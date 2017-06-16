@@ -66,7 +66,6 @@ router.beforeEach((to, from, next) => {
     _app.showFooter = false;
     next();
   }
-  next();
   // for SEO
   window.prerenderReady = false;
 });
