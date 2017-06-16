@@ -8,19 +8,11 @@ Vue.use(VueAxios, axios);
 // 引入api地址配置
 const API_ADDRESS = '/webapi/v2';
 const API_ADDRESS2 = '/mock';
-
 const Api = {};
-Api.install = function (Vue, options) {
-  if (!Vue.axios) {
-    console.log('Api需要引入axios插件...');
-    return;
-  }
 
-  // request请求拦截处理
-  const _this = Vue.prototype;
+Api.install = () => {
+  let apiCancelTokens = []; // 存放请求cancelToken
 
-  // 存放请求cancelToken
-  let apiCancelTokens = [];
   // request请求拦截处理
   Vue.axios.interceptors.request.use((config) => {
     // 添加取消请求用的cancelToken
@@ -50,12 +42,13 @@ Api.install = function (Vue, options) {
     return Promise.reject(err);
   });
 
+  /* eslint-disable */
   // 接口列表
   Vue.prototype.Api = {
     // 取消页面当前请求
     apiRequsetCancel() {
       // 依次取消请求
-      apiCancelTokens.forEach((cancel, k, s) => {
+      apiCancelTokens.forEach((cancel) => {
         cancel('请求被取消');
       });
       // 清空cancelToken

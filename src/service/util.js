@@ -28,12 +28,15 @@ Util.install = function install(Vue) {
       getCookie(name) {
         const sCookies = document.cookie;
         const arr = sCookies.split('; ');
+
         for (let i = 0; i < arr.length; i++) {
           const arr2 = arr[i].split('=');
           if (arr2[0] === name) {
             return arr2[1];
           }
         }
+
+        return '';
       },
 
       /**

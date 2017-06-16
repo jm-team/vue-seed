@@ -77,9 +77,9 @@
 </template>
 
 <script>
-  import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+  import { mapState, mapMutations } from 'vuex';
   import siteConfig from 'config/site.config';
-  import RSA from 'assets/js/security';
+//  import RSA from 'assets/js/security';
 
   export default {
     data() {
@@ -124,7 +124,7 @@
       login() {
         this.$refs.loginForm.validate((valid) => {
           if (valid) {
-            const data = this.loginForm;
+            // const data = this.loginForm;
             /* 通过接口获取RSA公钥并对密码进行加密 */
             // this.Api.getRSA().then((rep) => {
             //     let data=rep.data.data
@@ -148,9 +148,9 @@
             //         })
             //     }
             // })
-          } else {
-            return false;
           }
+
+          return false;
         });
       },
       closeLoginDialog() {
@@ -176,9 +176,9 @@
       }),
     },
     created() {
-      const _app = this.$parent;
+      const app = this.$parent;
       // 检测到未登录时处理
-      _app.$on('userNotLogin', () => {
+      app.$on('userNotLogin', () => {
         this.Util.cookie.setCookie('userIsLogin', false);
         this.changeLoginState({ loginState: false });
         this.updateUserInfo({
@@ -187,7 +187,7 @@
       });
 
       // 检测到已登录里处理
-      _app.$on('userLogined', () => {
+      app.$on('userLogined', () => {
         this.Util.cookie.setCookie('userIsLogin', true);
         this.changeLoginState({ loginState: true });
         this.Api.getUserInfo().then((data) => {

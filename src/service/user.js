@@ -1,37 +1,30 @@
 import siteConfig from '../../config/site.config';
 
-export function checkAutoLogin() {
+export default function () {
   const promise = new Promise((resolve, reject) => {
-    // 用户未登录
-    window.userNotLoginCallback = userNotLoginCallback;
-
-    // 用户已登录
-    window.userLoginSuccessCallback = userLoginSuccessCallback;
-
     /**
      * load has login script dynamically
      * @param token
      */
-    !(function () {
-      const body = document.getElementsByTagName('body')[0];
-      let _hasLoginJs = document.getElementById('_hasLoginJs');
-      if (_hasLoginJs != null) {
-        body.removeChild(_hasLoginJs);
-        _hasLoginJs = null;
-        // delete _hasLoginJs;
-      }
+    const body = document.getElementsByTagName('body')[0];
+    const script = document.createElement('script');
+    let $hasLoginJs = document.getElementById('_hasLoginJs');
 
-      const script = document.createElement('script');
-      script.id = '_hasLoginJs';
-      script.type = 'text/javascript';
-      script.charset = 'utf-8';
-      script.defer = true;
-      script.async = true;
-      body.appendChild(script);
-      script.onload = function () {
-      };
-      script.src = `${siteConfig.address.USERCENTER_ADDRESS}/hasLogin?serviceContext=&_t=${Date.now()}`;
-    }());
+    if ($hasLoginJs != null) {
+      // delete $hasLoginJs;
+      body.removeChild($hasLoginJs);
+      $hasLoginJs = null;
+    }
+
+    script.id = '_hasLoginJs';
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
+    script.defer = true;
+    script.async = true;
+    body.appendChild(script);
+    // eslint-disable-next-line
+    script.onload = function() {};
+    script.src = `${siteConfig.address.USERCENTER_ADDRESS}/hasLogin?serviceContext=&_t=${Date.now()}`;
 
     /**
      * 用户未登录
@@ -52,6 +45,13 @@ export function checkAutoLogin() {
       console.log(token);
       resolve(token);
     }
+
+    // 用户未登录
+    window.userNotLoginCallback = userNotLoginCallback;
+
+    // 用户已登录
+    window.userLoginSuccessCallback = userLoginSuccessCallback;
   });
+
   return promise;
 }

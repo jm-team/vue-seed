@@ -1,5 +1,23 @@
-// 公共filters
-import siteConfig from '../../config/site.config';
+/* eslint-disable */
+
+import siteConfig from '../../config/site.config'; // 公共filters
+
+function addZero(target) {
+  if (target < 10) {
+    target = `0${target}`;
+  }
+  return target;
+}
+
+// 获取非中文字符长度
+function notZhStringLength(val) {
+  return val.split(/[\x00-\xff]/).length - 1;
+}
+
+// 获取非中文字符长度
+function excludeStringLength(val) {
+  return val.split(/[@&#~%<>W]/).length - 1;
+}
 
 // 日期转换成 xxxx年xx月xx日 12:12 格式
 export function dateTransform(val) {
@@ -12,12 +30,6 @@ export function dateTransform(val) {
   return `${_year}年${addZero(_month)}月${addZero(_day)}日  ${addZero(_hour)}:${addZero(_minute)}`;
 }
 
-function addZero(target) {
-  if (target < 10) {
-    target = `0${target}`;
-  }
-  return target;
-}
 
 // 获取所在地区时间
 export function localeDate(val, type, spe) {
@@ -44,7 +56,6 @@ export function subStr(val, length, addEllipsis = true) {
   }
   return '';
 
-
   // 截取函数
   function sliceStr(val, length) {
     let addStr;
@@ -64,15 +75,6 @@ export function subStr(val, length, addEllipsis = true) {
       sliceStr(val.substr(length), length - newLength);
     }
   }
-}
-
-// 获取非中文字符长度
-function notZhStringLength(val) {
-  return val.split(/[\x00-\xff]/).length - 1;
-}
-// 获取非中文字符长度
-function excludeStringLength(val) {
-  return val.split(/[@&#~%<>W]/).length - 1;
 }
 
 // 图片cdn

@@ -7,12 +7,10 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex';
   import TopBar from 'components/topBar';
   import FooterBar from 'components/footerBar';
-
-  // 引入单点自动登录的js
-  import { checkAutoLogin } from 'service/user';
-  import { mapMutations } from 'vuex';
+  import checkAutoLogin from 'service/user'; // 引入单点自动登录的js
 
   export default {
     name: 'app',

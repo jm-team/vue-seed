@@ -26,8 +26,7 @@ Vue.use(Util);
 Vue.use(lazyLoad);
 Vue.use(ElementUI);
 
-/* eslint-disable no-new */
-const _app = new Vue({
+const app = new Vue({
   el: '#app',
   data() {
     return {
@@ -42,16 +41,17 @@ const _app = new Vue({
 
 // 设置路由钩子
 router.beforeEach((to, from, next) => {
-  _app.Api.apiRequsetCancel();
   const userIsLogin = store.state.User.isLogin;
+
+  app.Api.apiRequsetCancel();
   // 限制访问 releaseReasearch 路由
   if (userIsLogin !== 'true' && '/releaseResearch/'.match(`/${to.name}/`)) {
-    _app.$emit('showLoginDialog');
+    app.$emit('showLoginDialog');
     if (!from.name) {
-      _app.$router.push({ path: '/' });
+      app.$router.push({ path: '/' });
     }
   } else {
-    _app.showFooter = false;
+    app.showFooter = false;
     next();
   }
   // for SEO
@@ -63,11 +63,12 @@ router.afterEach((to) => {
   document.title = to.meta.title || 'vue-seed';
 
   // 百度统计单页面pv量
+  // eslint-disable-next-line
   _hmt.push(['_trackPageview', to.path]);
 
   // 公共底部延迟显示
   setTimeout(() => {
-    _app.showFooter = true;
+    app.showFooter = true;
   }, 300);
   // for SEO
   window.prerenderReady = true;
