@@ -28,7 +28,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // new webpack.DllReferencePlugin({
     //   context: path.resolve(__dirname, '..'),
     //   manifest: require('./vendor-manifest.json')
-    // }),    
+    // }),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
@@ -41,6 +41,11 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     // 压缩css资源
     new OptimizeCssAssetsPlugin(),
+    // 压缩图片
+    new ImageminPlugin(),
+    // 将模块Id转为hash值，解决模块id为数字时不稳定的问题，对应开发环境HashedModuleIdsPlugin
+    new webpack.HashedModuleIdsPlugin(),
+    // new webpack.NamedModulesPlugin(), // 调试用
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash:8].css')
@@ -68,7 +73,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
+      name: 'lib',
       minChunks: function (module, count) {
         // any required modules inside node_modules are extracted to vendor
         return (
@@ -84,7 +89,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
-      chunks: ['vendor']
+      chunks: ['lib']
     }),
     new PrerenderSpaPlugin(
       path.join(__dirname, '../dist'),
