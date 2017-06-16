@@ -22,7 +22,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, '..', config.dll),
+    path: resolve(config.dll),
     filename: '[name].[hash:8].dll.js',
     library: '[name]_[hash:8]'
   },
