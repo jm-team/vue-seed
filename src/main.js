@@ -4,7 +4,7 @@ import Vue from 'vue';
 import 'es6-promise/auto'; // 兼容ie9
 import 'assets/css/common.css';
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-default/index.css';
+// import 'element-ui/lib/theme-default/index.css';
 
 import App from './App';
 import Api from './service/api';

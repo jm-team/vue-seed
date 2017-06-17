@@ -14,7 +14,7 @@ function resolve(dir) {
 module.exports = {
   entry: {
     vendor: [
-      'element-ui/lib/index.js',
+      // 'element-ui/lib/index.js',
       'vue/dist/vue.common.js',
       'vue-router',
       'axios',
