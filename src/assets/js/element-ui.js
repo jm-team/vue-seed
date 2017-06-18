@@ -6,7 +6,7 @@ import {
   // Dropdown,
   // DropdownMenu,
   // DropdownItem,
-  Menu,
+  // Menu,
   // Submenu,
   // MenuItem,
   // MenuItemGroup,
@@ -33,12 +33,12 @@ import {
   // Breadcrumb,
   // BreadcrumbItem,
   Form,
-  // FormItem,
+  FormItem,
   Tabs,
-  // TabPane,
-  Tag,
+  TabPane,
+  // Tag,
   // Tree,
-  Alert,
+  // Alert,
   // Slider,
   Icon,
   // Row,
@@ -53,7 +53,7 @@ import {
   // Step,
   Carousel,
   // Scrollbar,
-  // CarouselItem,
+  CarouselItem,
   // Collapse,
   // CollapseItem,
   // Cascader,
@@ -69,7 +69,7 @@ Vue.use(Dialog)
 // Vue.use(Dropdown)
 // Vue.use(DropdownMenu)
 // Vue.use(DropdownItem)
-Vue.use(Menu)
+// Vue.use(Menu)
 // Vue.use(Submenu)
 // Vue.use(MenuItem)
 // Vue.use(MenuItemGroup)
@@ -96,12 +96,12 @@ Vue.use(Tooltip)
 // Vue.use(Breadcrumb)
 // Vue.use(BreadcrumbItem)
 Vue.use(Form)
-// Vue.use(FormItem)
+Vue.use(FormItem)
 Vue.use(Tabs)
-// Vue.use(TabPane)
-Vue.use(Tag)
+Vue.use(TabPane)
+// Vue.use(Tag)
 // Vue.use(Tree)
-Vue.use(Alert)
+// Vue.use(Alert)
 // Vue.use(Slider)
 Vue.use(Icon)
 // Vue.use(Row)
@@ -116,7 +116,7 @@ Vue.use(Icon)
 // Vue.use(Step)
 Vue.use(Carousel)
 // Vue.use(Scrollbar)
-// Vue.use(CarouselItem)
+Vue.use(CarouselItem)
 // Vue.use(Collapse)
 // Vue.use(CollapseItem)
 // Vue.use(Cascader)
@@ -129,5 +129,5 @@ Vue.prototype.$msgbox = MessageBox
 Vue.prototype.$alert = MessageBox.alert
 Vue.prototype.$confirm = MessageBox.confirm
 Vue.prototype.$prompt = MessageBox.prompt
-Vue.prototype.$notify = Notification
+// Vue.prototype.$notify = Notification
 Vue.prototype.$message = Message
