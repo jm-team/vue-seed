@@ -4,8 +4,8 @@
 
       <div class="technician-list fn-clear" v-for="(item,index) in technicianLists">
         <div class="technician-list-l fn-left">
-          <!-- <img :src="item.imgUrl | imgCdn"> -->
-          <img v-if="item.imgUrl" v-lazyload="Filters.imgCdn(item.imgUrl)" @click="jpExpertDetail(item.id)">
+          <!--<img :src="item.imgUrl | imgCdn"> {{item.imgUrl | imgCdn}} <span v-s="item.imgUrl | imgCdn"></span>-->
+          <img v-if="item.imgUrl" v-lazyload="item.imgUrl | $filter.imgCdn" @click="jpExpertDetail(item.id)">
           <img v-else src="../assets/img/head.png" @click="jpExpertDetail(item.id)">
         </div>
         <div class="technican-list-r fn-left">
@@ -109,8 +109,7 @@
               params: {
                 t: Date.now(),
               },
-            },
-            ).then((res) => {
+            }).then((res) => {
               if (res.data.statusCode === 200) {
                 curItem.isFavorite = 1;
                 vm.$set(this.technicianLists, index, curItem);

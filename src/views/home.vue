@@ -4,7 +4,7 @@
       <el-carousel arrow="never">
         <el-carousel-item v-for="item in carouselsFilter" :key="item.id">
           <a :href="item.url" @click="jplNul($event,item.url)">
-            <img v-lazyload="lazyLoadPic(item.adsImg)">
+            <img v-lazyload="item.adsImg | $filter.imgCdn">
           </a>
         </el-carousel-item>
       </el-carousel>
@@ -73,7 +73,7 @@
           <router-link :to="'/expert/'+item.id" tag="div" class="style-img pr" v-for="(item, index) in styleInfoFilter"
                        v-bind:class="{'fn-left': index === 4, 'fn-right': index === 5}" :key="item.id">
             <!-- <img :src="item.imgUrl | imgCdn"> -->
-            <img v-if="item.imgUrl" v-lazyload="lazyLoadPic(item.imgUrl)">
+            <img v-if="item.imgUrl" v-lazyload="item.imgUrl | $filter.imgCdn">
             <img v-else src="../assets/img/headSquare.png">
             <div class="expert-mask">
               <h5 class="expert-mask-name">{{item.expertName}}</h5>
@@ -105,7 +105,7 @@
 
         <div class="expert-detail-list fn-left pr" v-for="item in expertLists">
           <!-- <img :src="item.imgUrl | imgCdn"> -->
-          <img v-if="item.imgUrl" v-lazyload="lazyLoadPic(item.imgUrl)">
+          <img v-if="item.imgUrl" v-lazyload="item.imgUrl | $filter.imgCdn">
           <img v-else src="../assets/img/headGray.png">
           <!--<i class="tag">有色领域</i>-->
           <ul>
@@ -127,7 +127,7 @@
         <el-carousel-item v-for="item in bottomCarouselsFilter" :key="item.id">
           <!-- <img :src="item.adsImg | imgCdn"> -->
           <a :href="item.url" @click="jplNul($event, item.url)">
-            <img v-lazyload="lazyLoadPic(item.adsImg)">
+            <img v-lazyload="item.adsImg | $filter.imgCdn">
           </a>
         </el-carousel-item>
       </el-carousel>
@@ -135,24 +135,6 @@
   </div>
 </template>
 <script>
-  import Vue from 'vue';
-
-  // function sliceStr(val, length) {
-  //   var _newStr
-  //   _newStr = val.substr(0, length)
-  //   newStr = newStr + _newStr
-  //   console.log(newStr)
-  //   notChineseStrLength = _newStr.split(/[\x00-\xff]/).length - 1
-  //   var newLength = length - notChineseStrLength
-  //   if (notChineseStrLength > 0) {
-  //     excludeStrLength = _newStr.split(/[@&#~%<>》《W—]/).length - 1
-  //     var notChineseLength = parseInt((notChineseStrLength - excludeStrLength) / 2)
-  //     newLength = newLength + notChineseLength + excludeStrLength // 把非中文两个算一个后的长度
-  //     console.dir(newLength)
-  //     console.log(length - newLength)
-  //     sliceStr(val.substr(length), length - newLength)
-  //   }
-  // }
   export default {
     data() {
       return {
@@ -214,9 +196,6 @@
       });
     },
     methods: {
-      lazyLoadPic(url) {
-        return Vue.filter('imgCdn')(url);
-      },
       // 轮播防空跳转
       jplNul($event, url) {
         if (!url) {

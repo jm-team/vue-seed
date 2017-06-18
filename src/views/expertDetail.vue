@@ -59,7 +59,7 @@
               }}</span></router-link>
             <!-- <span class="company-logo"><img :src=" item.companyLogoUrl | imgCdn "></span> -->
             <span class="company-logo">
-              <img v-if="item.companyLogoUrl" v-lazyload="lazyLoadPic(item.companyLogoUrl)">
+              <img v-if="item.companyLogoUrl" v-lazyload="item.companyLogoUrl | $filter.imgCdn">
               <img v-else src="../assets/img/company.png">
             </span>
             <p>{{ item.content | subStr(235)}}</p>
@@ -263,7 +263,6 @@
 </template>
 <script>
   import { mapState } from 'vuex';
-  import Vue from 'vue';
 
   export default {
     data() {
@@ -363,9 +362,6 @@
       },
     },
     methods: {
-      lazyLoadPic(url) {
-        return Vue.filter('imgCdn')(url);
-      },
       openDialog(formName) {
         if (!this.userIsLogin) {
           this.$root.$emit('showLoginDialog');
