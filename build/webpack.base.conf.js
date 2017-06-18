@@ -100,5 +100,8 @@ module.exports = {
       // to `true` copies all files.
       copyUnmodified: true
     }),
-  ]
+  ],
+  performance: {
+    maxAssetSize: 100000
+  }
 }

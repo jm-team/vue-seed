@@ -1,10 +1,8 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
-import 'es6-promise/auto'; // 兼容ie9
+import 'assets/js/element-ui';
 import 'assets/css/common.css';
-import ElementUI from 'element-ui';
-// import 'element-ui/lib/theme-default/index.css';
 
 import App from './App';
 import Api from './service/api';
@@ -24,7 +22,6 @@ Vue.prototype.Filters = filters;
 Vue.use(Api);
 Vue.use(Util);
 Vue.use(lazyLoad);
-Vue.use(ElementUI);
 
 const app = new Vue({
   el: '#app',

@@ -14,7 +14,7 @@ function resolve(dir) {
 module.exports = {
   entry: {
     vendor: [
-      // 'element-ui/lib/index.js',
+      'es6-promise/auto', // 兼容ie9
       'vue/dist/vue.common.js',
       'vue-router',
       'axios',
