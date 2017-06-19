@@ -5,7 +5,7 @@
       <div class="technician-list fn-clear" v-for="(item,index) in technicianLists">
         <div class="technician-list-l fn-left">
           <!-- <img :src="item.imgUrl | imgCdn"> {{item.imgUrl | imgCdn}} <span v-s="item.imgUrl | imgCdn"></span> -->
-          <img v-if="item.imgUrl" v-lazyload="item.imgUrl | $filter.imgCdn" @click="jpExpertDetail(item.id)">
+          <img v-if="item.imgUrl" v-lazyload="$filter.imgCdn(item.imgUrl)" @click="jpExpertDetail(item.id)">
           <img v-else src="../assets/img/head.png" @click="jpExpertDetail(item.id)">
         </div>
         <div class="technican-list-r fn-left">

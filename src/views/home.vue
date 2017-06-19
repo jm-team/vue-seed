@@ -4,7 +4,7 @@
       <el-carousel arrow="never">
         <el-carousel-item v-for="item in carouselsFilter" :key="item.id">
           <a :href="item.url" @click="jplNul($event,item.url)">
-            <img v-lazyload="item.adsImg | $filter.imgCdn">
+            <img v-lazyload="$filter.imgCdn(item.adsImg)">
           </a>
         </el-carousel-item>
       </el-carousel>
@@ -73,7 +73,7 @@
           <router-link :to="'/expert/'+item.id" tag="div" class="style-img pr" v-for="(item, index) in styleInfoFilter"
                        v-bind:class="{'fn-left': index === 4, 'fn-right': index === 5}" :key="item.id">
             <!-- <img :src="item.imgUrl | imgCdn"> -->
-            <img v-if="item.imgUrl" v-lazyload="item.imgUrl | $filter.imgCdn">
+            <img v-if="item.imgUrl" v-lazyload="$filter.imgCdn(item.imgUrl)">
             <img v-else src="../assets/img/headSquare.png">
             <div class="expert-mask">
               <h5 class="expert-mask-name">{{item.expertName}}</h5>
@@ -105,7 +105,7 @@
 
         <div class="expert-detail-list fn-left pr" v-for="item in expertLists">
           <!-- <img :src="item.imgUrl | imgCdn"> -->
-          <img v-if="item.imgUrl" v-lazyload="item.imgUrl | $filter.imgCdn">
+          <img v-if="item.imgUrl" v-lazyload="$filter.imgCdn(item.imgUrl)">
           <img v-else src="../assets/img/headGray.png">
           <!--<i class="tag">有色领域</i>-->
           <ul>
@@ -127,7 +127,7 @@
         <el-carousel-item v-for="item in bottomCarouselsFilter" :key="item.id">
           <!-- <img :src="item.adsImg | imgCdn"> -->
           <a :href="item.url" @click="jplNul($event, item.url)">
-            <img v-lazyload="item.adsImg | $filter.imgCdn">
+            <img v-lazyload="$filter.imgCdn(item.adsImg)">
           </a>
         </el-carousel-item>
       </el-carousel>

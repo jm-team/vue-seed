@@ -62,7 +62,7 @@
               }}</span></router-link>
             <!-- <span class="company-logo"><img :src=" item.companyLogoUrl | imgCdn "></span> -->
             <span class="company-logo">
-              <img v-if="item.companyLogoUrl" v-lazyload="item.companyLogoUrl | $filter.imgCdn">
+              <img v-if="item.companyLogoUrl" v-lazyload="$filter.imgCdn(item.companyLogoUrl)">
               <img v-else src="../assets/img/company.png">
             </span>
             <p>{{ item.content | subStr(235)}}</p>
