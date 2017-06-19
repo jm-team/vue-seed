@@ -1,6 +1,6 @@
-# vue-seed
+# Vue-seed
 
-> Vue2 PC版项目脚手架
+> Vue2 PC项目脚手架，使用vue2.x + vue-router + vuex + axios + element-ui + webpack2搭建
 
 ## 简单几步构建基础项目
 
@@ -11,7 +11,7 @@ $ yarn install
 $ yarn
 ```
 
-### 生成Dll文件  
+### 生成Dll文件(vue2全家桶预编译)  
 ```bash
 $ yarn run build:dll
 ```
@@ -26,6 +26,7 @@ $ yarn run dev
 $ yarn run build
 # then
 $ yarn run start
+# http://localhost:8080
 ```
 
 ### 代码校验 ESlint  
@@ -39,5 +40,5 @@ $ yarn run lint:fix
 ```
 
 ## 开发配置
-* 代码构建配置提取到`config/index.js`
-* 开发环境配置提取到`config/address.config.js`
+* 代码构建配置文件`config/index.js`
+* 开发环境配置文件`config/address.config.js`
