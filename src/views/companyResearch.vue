@@ -80,6 +80,7 @@
     </div>
   </div>
 </template>
+
 <script>
   export default {
     data() {
@@ -117,6 +118,7 @@
   };
 
 </script>
+
 <style>
   .research-report-wrap .top-banner-wrap {
     width: 100%;
