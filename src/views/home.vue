@@ -134,6 +134,7 @@
     </div>
   </div>
 </template>
+
 <script>
   export default {
     data() {
@@ -210,6 +211,7 @@
   };
 
 </script>
+
 <style lang="scss" rel="stylesheet/scss">
   .home-wrap .carousel,
   .el-carousel {

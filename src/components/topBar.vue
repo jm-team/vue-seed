@@ -15,7 +15,8 @@
                 <p>{{ userInfo.nickName || userInfo.userName || '&nbsp;&nbsp;' }}</p>
                 <ul>
                   <li><a :href="CENTER_ADDRESS+'/jttoverview/init'" target="_blank">个人中心</a></li>
-                  <li><a :href="USERCENTER_ADDRESS+'/logout?returnUrl=' + curPageUrl" @click="setUserIsLoginCookie">退出</a>
+                  <li><a :href="USERCENTER_ADDRESS+'/logout?returnUrl=' + curPageUrl"
+                         @click="setUserIsLoginCookie">退出</a>
                   </li>
                 </ul>
               </li>
@@ -79,7 +80,7 @@
 <script>
   import { mapState, mapMutations } from 'vuex';
   import siteConfig from 'config/address.config';
-//  import RSA from 'assets/js/security';
+  //  import RSA from 'assets/js/security';
 
   export default {
     data() {
@@ -132,7 +133,6 @@
             //     var key = new RSA.getKeyPair(data.publicKeyExponent, "", data.publicKeyModulus);
             //     this.loginForm.password = RSA.encryptedString(key, this.loginForm.password);
             // })
-
 
             /* 请求登录接口 */
             // this.Api.doLogin(data.username, data.password).then((rep) => {

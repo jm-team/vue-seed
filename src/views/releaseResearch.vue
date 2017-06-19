@@ -95,9 +95,9 @@
         loading: false,
         explainDialogVisible: false,
         expertInfo: {},
-      // 判断是否提交中
+        // 判断是否提交中
         formSubmitting: false,
-      // 发布需求表单校验规则
+        // 发布需求表单校验规则
         demandFormVerifyRule: {
           companyIntroduces: [
             { message: '请输入调研公司信息', trigger: 'blur', required: true },

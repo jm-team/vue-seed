@@ -8,7 +8,8 @@
         </div>
         <h3><span :title="expertInfo.expertName">{{ expertInfo.expertName | subStr(6) }}</span><span class="city"
                                                                                                      v-if="expertInfo.city"
-                                                                                                     :title="expertInfo.city">{{ expertInfo.city | subStr(10)
+                                                                                                     :title="expertInfo.city">{{ expertInfo.city |
+        subStr(10)
           }}</span></h3>
         <p><span v-if="expertInfo.positionName" :title="expertInfo.positionName">{{ expertInfo.positionName | subStr(10)
           }}</span><span v-if="expertInfo.positionName && expertInfo.companyName"> | </span><span
@@ -16,7 +17,9 @@
           <span v-if="expertInfo.yearsOfWorking"> {{ expertInfo.yearsOfWorking }}年</span></p>
         <p>{{ expertInfo.expertIntroduces | subStr(115) }}</p>
         <span :class=" { 'btn-expert-fav': true, 'expert-faved': expertInfo.isFavorite && expertInfo.isFavorite!=-1 } "
-              @click="expertFavo(expertInfo.isFavorite)">{{ expertInfo.isFavorite && expertInfo.isFavorite != -1 ? '取消收藏' : '收藏专家'
+              @click="expertFavo(expertInfo.isFavorite)">{{ expertInfo.isFavorite && expertInfo.isFavorite != -1
+          ? '取消收藏'
+          : '收藏专家'
           }}</span>
       </div>
     </div>
@@ -83,11 +86,13 @@
           <div class="form-expert-info">
             <h3><span :title="expertInfo.expertName">{{ expertInfo.expertName | subStr(6) }}</span><span class="city"
                                                                                                          v-if="expertInfo.city"
-                                                                                                         :title="expertInfo.city">{{ expertInfo.city | subStr(10)
+                                                                                                         :title="expertInfo.city">{{ expertInfo.city |
+            subStr(10)
               }}</span></h3>
             <p><span :title="expertInfo.positionName">{{ expertInfo.positionName | subStr(10) }}</span><span
               v-if="expertInfo.positionName && expertInfo.companyName"> | </span><span v-if="expertInfo.companyName"
-                                                                                       :title="expertInfo.companyName">{{ expertInfo.companyName | subStr(15)
+                                                                                       :title="expertInfo.companyName">{{ expertInfo.companyName |
+            subStr(15)
               }}</span> <span v-if="expertInfo.yearsOfWorking"> {{ expertInfo.yearsOfWorking }}年</span></p>
             <p>{{ expertInfo.expertIntroduces | subStr(110) }}</p>
           </div>
@@ -179,11 +184,13 @@
           <div class="form-expert-info">
             <h3><span :title="expertInfo.expertName">{{ expertInfo.expertName | subStr(6) }}</span><span class="city"
                                                                                                          v-if="expertInfo.city"
-                                                                                                         :title="expertInfo.city">{{ expertInfo.city | subStr(10)
+                                                                                                         :title="expertInfo.city">{{ expertInfo.city |
+            subStr(10)
               }}</span></h3>
             <p><span :title="expertInfo.positionName">{{ expertInfo.positionName | subStr(10) }}</span><span
               v-if="expertInfo.positionName && expertInfo.companyName"> | </span><span v-if="expertInfo.companyName"
-                                                                                       :title="expertInfo.companyName">{{ expertInfo.companyName | subStr(15)
+                                                                                       :title="expertInfo.companyName">{{ expertInfo.companyName |
+            subStr(15)
               }}</span> <span v-if="expertInfo.yearsOfWorking"> {{ expertInfo.yearsOfWorking }}年</span></p>
             <p>{{ expertInfo.expertIntroduces | subStr(110) }}</p>
           </div>
@@ -276,17 +283,17 @@
         researchList: [],
         contactFormSubmitting: false,
         interviewFormSubmitting: false,
-      // 发布联系单数据
-      // , contactForm: {
-      //   content: ''
-      //   , intentionUserName: ''
-      //   , intentionUserCompany: ''
-      //   , intentionUserJob: ''
-      //   , intentionUserEmail: ''
-      //   , intentionUserTel: ''
-      //   , objectId: this.$route.params.id || ''
-      // }
-      // 发布联系单校验规则
+        // 发布联系单数据
+        contactForm: {
+          content: '',
+          intentionUserName: '',
+          intentionUserCompany: '',
+          intentionUserJob: '',
+          intentionUserEmail: '',
+          intentionUserTel: '',
+          objectId: this.$route.params.id || '',
+        },
+        // 发布联系单校验规则
         contactFormVerifyRule: {
           content: [
             { message: '请输入联系内容', trigger: 'blur', required: true },
@@ -308,17 +315,17 @@
           ],
         },
 
-      // 发布采访数据
-      // , interviewForm: {
-      //   requirementContent: ''
-      //   , intentionUserName: ''
-      //   , intentionUserCompany: ''
-      //   , intentionUserPosition: ''
-      //   , intentionUserEmail: ''
-      //   , intentionUserTel: ''
-      //   , expertNo: this.$route.params.id || null
-      // }
-      // 发布采访校验规则
+        // 发布采访数据
+        // , interviewForm: {
+        //   requirementContent: ''
+        //   , intentionUserName: ''
+        //   , intentionUserCompany: ''
+        //   , intentionUserPosition: ''
+        //   , intentionUserEmail: ''
+        //   , intentionUserTel: ''
+        //   , expertNo: this.$route.params.id || null
+        // }
+        // 发布采访校验规则
         interviewFormVerifyRule: {
           requirementContent: [
             { message: '请输入采访内容', trigger: 'blur', required: true },

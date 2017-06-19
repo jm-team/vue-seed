@@ -4,7 +4,7 @@
 
       <div class="technician-list fn-clear" v-for="(item,index) in technicianLists">
         <div class="technician-list-l fn-left">
-          <!--<img :src="item.imgUrl | imgCdn"> {{item.imgUrl | imgCdn}} <span v-s="item.imgUrl | imgCdn"></span>-->
+          <!-- <img :src="item.imgUrl | imgCdn"> {{item.imgUrl | imgCdn}} <span v-s="item.imgUrl | imgCdn"></span> -->
           <img v-if="item.imgUrl" v-lazyload="item.imgUrl | $filter.imgCdn" @click="jpExpertDetail(item.id)">
           <img v-else src="../assets/img/head.png" @click="jpExpertDetail(item.id)">
         </div>
@@ -40,6 +40,7 @@
     </div>
   </div>
 </template>
+
 <script>
   import { mapState } from 'vuex';
 
@@ -144,6 +145,7 @@
   };
 
 </script>
+
 <style>
   .el-pagination {
     width: 420px;
