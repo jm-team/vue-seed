@@ -7,7 +7,8 @@ Vue.use(VueAxios, axios);
 
 // 引入api地址配置
 const API_ADDRESS = '/webapi/v2';
-const API_ADDRESS2 = '/mock';
+// eslint-disable-next-line
+const API_ADDRESS2 = `${__webpack_require__.p}mock`;
 const Api = {};
 
 Api.install = () => {
@@ -81,7 +82,7 @@ Api.install = () => {
     },
 
     technicianList(offset = 0, limit = 8) {
-      return Vue.axios.get('/mock/pageExpertInfo.json', {
+      return Vue.axios.get(`${API_ADDRESS2}/pageExpertInfo.json`, {
         params: {
           t: Date.now(),
         },
@@ -109,7 +110,7 @@ Api.install = () => {
 
     // 获取用户信息接口
     getUserInfo() {
-      return Vue.axios.get('/mock/userInfo.json', {
+      return Vue.axios.get(`${API_ADDRESS2}/userInfo.json`, {
         params: {
           t: Date.now(),
         },
@@ -136,7 +137,7 @@ Api.install = () => {
 
     // 获取专家详情
     getExpertDetail(expertId) {
-      return Vue.axios.get('/mock/detailedExpertInfo.json', {
+      return Vue.axios.get(`${API_ADDRESS2}/detailedExpertInfo.json`, {
         params: {
           t: Date.now(),
         },
@@ -145,7 +146,7 @@ Api.install = () => {
 
     // 获取专家技能
     getExpertAttribute(expertId) {
-      return Vue.axios.get('/mock/expertAttribute.json', {
+      return Vue.axios.get(`${API_ADDRESS2}/expertAttribute.json`, {
         params: {
           t: Date.now(),
         },
@@ -154,7 +155,7 @@ Api.install = () => {
 
     // 获取专家研报列表
     getExpertResearch(expertId) {
-      return Vue.axios.get('/mock/researchReport.json', {
+      return Vue.axios.get(`${API_ADDRESS2}/researchReport.json`, {
         params: {
           t: Date.now(),
         },
@@ -177,13 +178,13 @@ Api.install = () => {
     },
 
     detailedResearchReport() {
-      return Vue.axios.get('/mock/detailedResearchReport.json');
+      return Vue.axios.get(`${API_ADDRESS2}/detailedResearchReport.json`);
     },
 
     // 获取底部菜单
     getFooterNavs() {
       // return Vue.axios.get(`${API_ADDRESS}/indexBottomMenu`, {
-      return Vue.axios.get('/mock/footerMenu.json', {
+      return Vue.axios.get(`${API_ADDRESS2}/footerMenu.json`, {
         params: {
           t: Date.now(),
         },
@@ -192,7 +193,7 @@ Api.install = () => {
 
     // 获取帮助详情数据
     getArtDetail(artId) {
-      return Vue.axios.get('/mock/artDetails.json', {
+      return Vue.axios.get(`${API_ADDRESS2}/artDetails.json`, {
         params: {
           t: Date.now(),
         },
@@ -201,7 +202,7 @@ Api.install = () => {
 
     // 获取帮助侧栏数据
     getArtLeftbar(artId) {
-      return Vue.axios.get('/mock/artLeftList.json', {
+      return Vue.axios.get(`${API_ADDRESS2}/artLeftList.json`, {
         params: {
           t: Date.now(),
         },

@@ -1,0 +1,24 @@
+{
+  "authors": {
+    "exclude": ["立"]
+  },
+  "gh-pages": {
+    "list": [
+      {
+        "filePath": "./index.html",
+        "target": "<base href=\"/\" />",
+        "content": "<base href=\"/vue-seed/\" />"
+      },
+      {
+        "filePath": "./config/index.js",
+        "target": "+ '/'",
+        "content": "+ '/vue-seed/'"
+      },
+      {
+        "filePath": "./src/router/index.js",
+        "target": "'history',",
+        "content": "'hash', base:'/vue-seed/',"
+      }
+    ]
+  }
+}
