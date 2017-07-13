@@ -529,7 +529,7 @@
         font-size: 14px;
         margin-left: 20px;
         padding-left: 20px;
-        background: url('../assets/img/icon-location.png') no-repeat left center;
+        background: url('../assets/img/sprite/icon-location.png') no-repeat left center;
       }
     }
     p {
@@ -593,7 +593,7 @@
         font-size: 14px;
         margin-left: 20px;
         padding-left: 20px;
-        background: url('../assets/img/icon-location.png') no-repeat left center;
+        background: url('../assets/img/sprite/icon-location.png') no-repeat left center;
       }
     }
     p {
@@ -635,10 +635,10 @@
       height: 15px;
       margin: 0 10px 2px 0;
       vertical-align: middle;
-      background: url('../assets/img/icon-fav2.png') no-repeat center center;
+      background: url('../assets/img/sprite/icon-fav2.png') no-repeat center center;
     }
     .expert-faved:before {
-      background: url('../assets/img/icon-fav3.png') no-repeat center center;
+      background: url('../assets/img/sprite/icon-fav3.png') no-repeat center center;
     }
   }
 
@@ -659,12 +659,12 @@
     .layout-wrap:before {
       top: 0;
       left: 0;
-      background: url('../assets/img/icon-qm-left.png') no-repeat center center;
+      background: url('../assets/img/sprite/icon-qm-left.png') no-repeat center center;
     }
     .layout-wrap:after {
       bottom: 0;
       right: 0;
-      background: url('../assets/img/icon-qm-right.png') no-repeat center center;
+      background: url('../assets/img/sprite/icon-qm-right.png') no-repeat center center;
     }
     h3 {
       font-size: 18px;

@@ -237,7 +237,7 @@
       float: right;
       padding-left: 25px;
       margin-top: 15px;
-      background: url('../assets/img/icon-info.png') no-repeat left center;
+      background: url('../assets/img/sprite/icon-info.png') no-repeat left center;
     }
   }
 
@@ -296,7 +296,7 @@
         font-size: 14px;
         margin-left: 20px;
         padding-left: 20px;
-        background: url('../assets/img/icon-location.png') no-repeat left center;
+        background: url('../assets/img/sprite/icon-location.png') no-repeat left center;
       }
     }
     p {

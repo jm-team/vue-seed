@@ -247,7 +247,7 @@
     display: inline-block;
     padding-left: 25px;
     margin: 0px 20px;
-    background: url("../assets/img/icon-location.png") no-repeat;
+    background: url("../assets/img/sprite/icon-location.png") no-repeat;
   }
 
   .technican-list-r .expert-brief span.company {
@@ -258,7 +258,7 @@
   .technican-list-r .expert-brief button.collection {
     width: 120px;
     height: 34px;
-    background: #2788e8 url('../assets/img/icon-fav1.png') no-repeat;
+    background: #2788e8 url('../assets/img/sprite/icon-fav1.png') no-repeat;
     background-position: 15px;
     padding-left: 15px;
     font-size: 14px;
@@ -270,19 +270,19 @@
   }
 
   .technican-list-r .expert-brief button.collection:hover {
-    background: #157ada url('../assets/img/icon-fav1.png') no-repeat;
+    background: #157ada url('../assets/img/sprite/icon-fav1.png') no-repeat;
     background-position: 15px;
   }
 
   .technican-list-r .expert-brief button.collection:active {
-    background: #0667c3 url('../assets/img/icon-fav1.png') no-repeat;
+    background: #0667c3 url('../assets/img/sprite/icon-fav1.png') no-repeat;
     background-position: 15px;
   }
 
   .technican-list-r .expert-brief button.not-collection {
     width: 120px;
     height: 34px;
-    background: #f5f5f5 url('../assets/img/icon-fav2.png') no-repeat;
+    background: #f5f5f5 url('../assets/img/sprite/icon-fav2.png') no-repeat;
     background-position: 15px;
     padding-left: 15px;
     font-size: 14px;

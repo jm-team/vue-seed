@@ -109,12 +109,12 @@
             display: block;
             padding-left: 50px;
             line-height: 40px;
-            background: url('../assets/img/icon-dot-default.png') no-repeat 20px center;
+            background: url('../assets/img/sprite/icon-dot-default.png') no-repeat 20px center;
           }
           a:hover,
           a.active {
             color: #fff;
-            background: $color-2788e8 url('../assets/img/icon-dot-active.png') no-repeat 20px center;
+            background: $color-2788e8 url('../assets/img/sprite/icon-dot-active.png') no-repeat 20px center;
           }
         }
       }

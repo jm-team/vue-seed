@@ -268,7 +268,7 @@
     line-height: 28px;
     color: #a1a1a1;
     padding-left: 25px;
-    background: url("../assets/img/icon-location.png") 0px 4px no-repeat;
+    background: url("../assets/img/sprite/icon-location.png") 0px 4px no-repeat;
   }
 
   .research-report-detail-r .expert-card .content {

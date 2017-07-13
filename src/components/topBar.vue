@@ -380,7 +380,7 @@
   .tel-info {
     border-top: 1px solid #ccc;
     padding: 15px 0 0 60px;
-    background: url('../assets/img/icon-tel.png') no-repeat 10px 20px;
+    background: url('../assets/img/sprite/icon-tel.png') no-repeat 10px 20px;
     color: #9e9e9e;
     p {
       margin: 0;
