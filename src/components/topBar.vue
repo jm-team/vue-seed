@@ -54,7 +54,7 @@
       <el-form :model="loginForm" :rules="loginFormVerifyRule" ref="loginForm" label-width="1px">
         <el-form-item prop="username">
           <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="请输入手机号"
-                    autofocus="true"></el-input>
+                    autofocus="autofocus"></el-input>
         </el-form-item>
         <el-form-item prop="password">
           <el-input type="password" v-model="loginForm.password" auto-complete="off" placeholder="请输入密码"></el-input>

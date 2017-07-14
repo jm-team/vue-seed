@@ -27,13 +27,13 @@
           </div>
           <div class="company-info-title required">调研公司信息：</div>
           <el-form-item prop="companyIntroduces" label-width="1px">
-            <el-input type="textarea" :rows="5" autofocus="true" placeholder="请尽可能的对公司信息进行描述，以便客服人员安排相应的专家进行调研"
+            <el-input type="textarea" :rows="5" autofocus="autofocus" placeholder="请尽可能的对公司信息进行描述，以便客服人员安排相应的专家进行调研"
                       v-model="demandForm.companyIntroduces">
             </el-input>
           </el-form-item>
           <div class="company-info-title required">调研描述：</div>
           <el-form-item prop="content" label-width="1px">
-            <el-input type="textarea" :rows="5" autofocus="true" placeholder="请尽可能说明具体内容问题，并对背景有所介绍，让专家能够快速理解您调查内容的重点"
+            <el-input type="textarea" :rows="5" autofocus="autofocus" placeholder="请尽可能说明具体内容问题，并对背景有所介绍，让专家能够快速理解您调查内容的重点"
                       v-model="demandForm.content">
             </el-input>
           </el-form-item>

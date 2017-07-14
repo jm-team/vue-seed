@@ -101,7 +101,7 @@
                       label="联系内容：">
           <el-input type="textarea"
                     :rows="3"
-                    autofocus="true"
+                    autofocus="autofocus"
                     placeholder="请尽可能说明具体内容问题，并对问题的背景有所介绍，让专家能够快速理解您的问题"
                     v-model="contactForm.content">
           </el-input>
@@ -199,7 +199,7 @@
                       label="采访内容：">
           <el-input type="textarea"
                     :rows="3"
-                    autofocus="true"
+                    autofocus="autofocus"
                     placeholder="请尽可能说明采访内容，并对相关背景有所介绍，以便专家能够快速响应您的采访要求"
                     v-model="interviewForm.requirementContent">
           </el-input>
